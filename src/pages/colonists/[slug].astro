@@ -23,6 +23,8 @@ const facts: [string, string][] = [
   ['Active days', String(colonist.active_days)],
   ['Most seen at', colonist.top_places[0] ?? '—'],
 ];
+if (colonist.avatar) facts.unshift(['Faction', colonist.avatar.faction]);
+const traitLabel = (k: string) => k.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase());
 
 // One square per day for the 30 days ending on the latest dispatch
 const perDay = new Map<string, number>();
@@ -50,9 +52,9 @@ const groups: [string, string[]][] = [
 
   <section class="wrap profile">
     <figure class="portrait">
-      <Portrait colonist={colonist} class="art" />
+      <Portrait colonist={colonist} class="art" large />
       <figcaption class="label">
-        <span>{colonist.image ? 'Preview Avatar' : 'Avatar art pending'}</span><span class="active">● Active</span>
+        <span>{colonist.avatar ? `Avatar #${colonist.avatar.token_id} · Preview` : 'Avatar art pending'}</span><span class="active">● Active</span>
       </figcaption>
     </figure>
     <div class="file">
@@ -101,7 +103,17 @@ const groups: [string, string[]][] = [
         </div>
         <div class="panel box">
           <h2 class="label">Avatar traits</h2>
-          <p class="note">Name, portrait, faction and traits will come from the Parallel Avatars collection.</p>
+          {colonist.avatar ? (
+            <>
+              <p class="saying">“{colonist.avatar.saying}”</p>
+              <dl class="traits">
+                {Object.entries(colonist.avatar.traits).map(([k, v]) => <div><dt>{traitLabel(k)}</dt><dd>{v}</dd></div>)}
+              </dl>
+              <p class="note">Preview pairing: this Avatar stands in for the Colonist filed as {colonist.callsign} until the real match is known.</p>
+            </>
+          ) : (
+            <p class="note">Name, portrait, faction and traits will come from the Parallel Avatars collection.</p>
+          )}
         </div>
       </aside>
     </div>
@@ -166,5 +178,10 @@ const groups: [string, string[]][] = [
   .l1 { background: color-mix(in srgb, var(--accent) 30%, transparent); }
   .l2 { background: color-mix(in srgb, var(--accent) 60%, transparent); }
   .l3 { background: var(--accent); }
+  .saying { margin: 0; font-size: 16px; line-height: 1.5; color: var(--text); }
+  .traits { margin: 0; display: flex; flex-direction: column; }
+  .traits div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .traits dt { color: var(--muted); }
+  .traits dd { margin: 0; text-align: right; }
   .note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
 </style>
