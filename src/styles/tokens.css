@@ -12,14 +12,14 @@
   --muted: #9aa3ad;
   --faint: #6f7882;
 
-  /* Lime sampled from the Colony logo */
-  --accent: #def141;
-  --accent-hover: #f2ff9a;
+  /* Warm orange; the logo keeps its own lime glyph */
+  --accent: #f5822a;
+  --accent-hover: #ffa766;
   --on-accent: #0a0c0f;
 
   /* One colour per kind of entry */
   --log: var(--accent);
-  --chronicle: #f0a35e;
+  --chronicle: #7cc4e4;
 
   --font-display: 'Michroma', sans-serif;
   --font-body: 'Barlow', sans-serif;

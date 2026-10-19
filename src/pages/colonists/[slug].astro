@@ -3,13 +3,16 @@ import Base from '../../layouts/Base.astro';
 import FilterTabs from '../../components/FilterTabs.astro';
 import Portrait from '../../components/Portrait.astro';
 import { colonists, getColonist, timelineFor, formatDate, stats, day } from '../../data';
-import { url } from '../../lib/url';
+import { url, bg } from '../../lib/url';
 
 export function getStaticPaths() {
   return colonists.map((c) => ({ params: { slug: c.slug } }));
 }
 
 const colonist = getColonist(Astro.params.slug!)!;
+// Alternate the backdrop between two landscapes so neighbouring files differ
+const backdrops = ['/assets/art/fortress-golden.jpg', '/assets/art/dropship-canyon.jpg'];
+const backdrop = backdrops[colonists.indexOf(colonist) % backdrops.length];
 const timeline = timelineFor(colonist);
 
 const facts: [string, string][] = [
@@ -40,6 +43,7 @@ const groups: [string, string[]][] = [
 ];
 ---
 <Base title={colonist.name} current="colonists">
+  <div class="backdrop" style={bg(backdrop)}>
   <div class="wrap crumbs label">
     <a href={url('/colonists/')}>Registry</a> / {colonist.name}
   </div>
@@ -67,6 +71,7 @@ const groups: [string, string[]][] = [
       ))}
     </div>
   </section>
+  </div>
 
   <section class="reports grid-tex">
     <div class="wrap reports-inner">
@@ -104,6 +109,11 @@ const groups: [string, string[]][] = [
 </Base>
 
 <style>
+  .backdrop {
+    background-image: linear-gradient(180deg, rgba(10, 12, 15, .55) 0%, rgba(10, 12, 15, .9) 240px, var(--ground) 520px), var(--bg);
+    background-size: 100% auto; background-repeat: no-repeat; background-position: center top;
+  }
+  @media (max-width: 900px) { .backdrop { background-size: auto 520px; } }
   .crumbs { padding-top: 24px; letter-spacing: .14em; }
   .crumbs a { color: var(--muted); }
   .profile { display: flex; flex-wrap: wrap; gap: 48px; padding-block: 32px 64px; }
@@ -153,8 +163,8 @@ const groups: [string, string[]][] = [
   .days { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; }
   .days span { aspect-ratio: 1; border: 1px solid #2a323b; }
   .l0 { background: var(--well); }
-  .l1 { background: rgba(222, 241, 65, .3); }
-  .l2 { background: rgba(222, 241, 65, .6); }
+  .l1 { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+  .l2 { background: color-mix(in srgb, var(--accent) 60%, transparent); }
   .l3 { background: var(--accent); }
   .note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
 </style>
