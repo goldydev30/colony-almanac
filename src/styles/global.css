@@ -53,7 +53,8 @@ a:hover { color: var(--accent-hover); }
 }
 .btn-primary { background: var(--accent); color: var(--on-accent); }
 .btn-primary:hover { background: var(--accent-hover); color: var(--on-accent); }
-.btn-ghost { border: 1px solid #5a636d; color: var(--text); }
+.btn-ghost { border: 1px solid #5a636d; color: var(--text); background: transparent; }
+button.btn { font-family: inherit; cursor: pointer; }
 .btn-ghost:hover { border-color: var(--text); color: var(--text); }
 .btn-outline { border: 1px solid var(--accent); color: var(--accent); }
 

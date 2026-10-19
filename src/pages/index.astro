@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import EntryCard from '../components/EntryCard.astro';
 import ColonistCard from '../components/ColonistCard.astro';
+import FeaturedColonist from '../components/FeaturedColonist.astro';
 import { colonists, allEntries, stats, day, formatDate, excerpt } from '../data';
 import { url, bg } from '../lib/url';
 
@@ -42,7 +43,7 @@ const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.
   <section class="hero section" style={bg('/assets/art/fortress-night.jpg')}>
     <div class="wrap hero-inner">
       <div class="eyebrow">Survive as one, far from home.</div>
-      <h1 class="display">Welcome to the <span class="glow">Colony Almanac</span></h1>
+      <h1 class="display"><span class="pre">Welcome to the</span> <span class="glow">Colony Almanac</span></h1>
       <p class="lede">
         A collection of logs, chronicles, and memories from top Colonists across the Parallel universe.
       </p>
@@ -58,9 +59,16 @@ const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.
     </div>
   </section>
 
+  <section class="section">
+    <div class="wrap">
+      <SectionHeader eyebrow="Spotlight" title="Featured Colonist" link={{ href: url('/colonists/'), label: 'All Colonists' }} />
+      <FeaturedColonist />
+    </div>
+  </section>
+
   <section id="latest" class="section grid-tex">
     <div class="wrap">
-      <SectionHeader eyebrow={`Logs · ${formatDate(end)}`} title="Latest from the Colony" link={{ href: url('/reports/'), label: 'All entries' }} />
+      <SectionHeader eyebrow={`Logs · ${formatDate(end)}`} title="From the Archives" link={{ href: url('/archives/'), label: 'All entries' }} />
       <div class="entries">
         {latestLogs.map((item) => <EntryCard item={item} />)}
       </div>
@@ -80,14 +88,14 @@ const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.
             </li>
           ))}
         </ol>
-        <a href={url('/reports/')} class="more">Read the week →</a>
+        <a href={url('/archives/')} class="more">Read the week →</a>
       </article>
       <article class="monthly" style={bg('/assets/art/raider-charge.jpg')}>
         <div class="eyebrow">Monthly chronicle · {formatDate(end, { month: 'long', year: 'numeric' })}</div>
         <h2 class="display">{monthEvents.length} events reshaped {monthEventColonies} colonies</h2>
         {headlineFact && <blockquote>{headlineFact}</blockquote>}
         <p>{monthLogs} logs filed this month by the {monthVoices} most active Colonists.</p>
-        <a href={url('/reports/?show=chronicle')} class="more">Open the Chronicle →</a>
+        <a href={url('/archives/?show=chronicle')} class="more">Open the Chronicle →</a>
       </article>
     </div>
   </section>
@@ -132,6 +140,7 @@ const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.
   }
   .hero .hero-inner { padding-block: 120px 96px; gap: 28px; }
   .hero h1 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.15; max-width: 760px; }
+  .hero h1 .pre { display: block; font-size: .62em; color: var(--text-2); margin-bottom: .2em; }
   /* "Colony Almanac" sheens once on arrival, then glows and swells on hover */
   .glow {
     display: inline-block; transform-origin: left center;

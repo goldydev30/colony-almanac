@@ -1,0 +1,129 @@
+---
+import Portrait from './Portrait.astro';
+import { colonists, timelineFor, day, formatDate, stats } from '../data';
+import { url } from '../lib/url';
+
+// Every Colonist gets a card for the month of the latest dispatch; a script
+// shows one at random on each visit (the first stays visible without JS)
+const month = stats.lastSeen.slice(0, 7);
+const [y, m] = month.split('-').map(Number);
+const daysInMonth = new Date(Date.UTC(y, m, 0)).getUTCDate();
+const monthLabel = formatDate(`${month}-01`, { month: 'long', year: 'numeric' });
+
+const cards = colonists.map((colonist) => {
+  const perDay = Array.from({ length: daysInMonth }, () => ({ logs: 0, events: 0 }));
+  for (const e of timelineFor(colonist)) {
+    if (!e.at.startsWith(month)) continue;
+    const d = perDay[Number(day(e.at).slice(8)) - 1];
+    if (e.type === 'log') d.logs++; else d.events++;
+  }
+  const logs = perDay.reduce((n, d) => n + d.logs, 0);
+  const events = perDay.reduce((n, d) => n + d.events, 0);
+  const active = perDay.filter((d) => d.logs + d.events > 0).length;
+  const peak = Math.max(1, ...perDay.map((d) => d.logs + d.events));
+  return { colonist, perDay, logs, events, active, peak };
+}).filter((c) => c.logs + c.events > 0);
+---
+<div class="featured-wrap" data-featured-wrap>
+  {cards.map(({ colonist, perDay, logs, events, active, peak }, i) => (
+    <article class="panel featured" data-featured hidden={i > 0}>
+      <a href={url(`/colonists/${colonist.slug}/`)} class="portrait" tabindex="-1" aria-hidden="true">
+        <Portrait colonist={colonist} class="art" />
+      </a>
+      <div class="body">
+        <div class="who">
+          <h3 class="display"><a href={url(`/colonists/${colonist.slug}/`)}>{colonist.name}</a></h3>
+          <p class="label">
+            {colonist.avatar && <span>{colonist.avatar.faction}</span>}
+            {colonist.commander && <span>Commander <b>{colonist.commander}</b></span>}
+          </p>
+        </div>
+        <blockquote>“{colonist.quote}”</blockquote>
+        <dl class="nums">
+          <div><dt class="label">Logs</dt><dd class="display">{logs}</dd></div>
+          <div><dt class="label">Chronicle events</dt><dd class="display">{events}</dd></div>
+          <div><dt class="label">Active days</dt><dd class="display">{active}</dd></div>
+        </dl>
+        <figure class="chart">
+          <figcaption class="label">Entries per day · {monthLabel}</figcaption>
+          <div class="bars" role="img" aria-label={`${colonist.name} filed ${logs} logs and ${events} Chronicle events across ${active} days in ${monthLabel}`}>
+            {perDay.map((d, n) => (
+              <span class="col" title={`${n + 1} ${monthLabel.split(' ')[0]}: ${d.logs} log${d.logs === 1 ? '' : 's'}, ${d.events} event${d.events === 1 ? '' : 's'}`}>
+                <span class="ev" style={`height:${(d.events / peak) * 100}%`} />
+                <span class="lg" style={`height:${(d.logs / peak) * 100}%`} />
+              </span>
+            ))}
+          </div>
+          <div class="axis label" aria-hidden="true">
+            <span>1</span><span>{Math.ceil(daysInMonth / 2)}</span><span>{daysInMonth}</span>
+          </div>
+          <div class="legend label">
+            <span><i class="k-lg" />Logs</span><span><i class="k-ev" />Chronicle events</span>
+          </div>
+        </figure>
+        <div class="actions">
+          <a href={url(`/colonists/${colonist.slug}/`)} class="btn btn-primary">Open file</a>
+          <button type="button" class="btn btn-ghost" data-featured-next>Show another</button>
+        </div>
+      </div>
+    </article>
+  ))}
+</div>
+
+<script>
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-featured]')];
+  let current = 0;
+  const show = (i: number) => {
+    cards[current].hidden = true;
+    cards[i].hidden = false;
+    current = i;
+  };
+  if (cards.length > 1) {
+    show(Math.floor(Math.random() * cards.length));
+    document.querySelectorAll('[data-featured-next]').forEach((b) =>
+      b.addEventListener('click', () => {
+        let next = Math.floor(Math.random() * (cards.length - 1));
+        if (next >= current) next++;
+        show(next);
+        cards[next].querySelector<HTMLElement>('[data-featured-next]')?.focus();
+      }));
+  } else {
+    document.querySelectorAll<HTMLElement>('[data-featured-next]').forEach((b) => (b.hidden = true));
+  }
+</script>
+
+<style>
+  .featured { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); overflow: hidden; }
+  .portrait { display: block; border-right: 1px solid var(--line); background: var(--well); }
+  .portrait :global(.art) { width: 100%; height: 100%; min-height: 100%; aspect-ratio: 4 / 5; object-fit: cover; font-size: 56px; }
+  .body { padding: 32px; display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  .who h3 { font-size: clamp(26px, 3vw, 36px); }
+  .who h3 a { color: var(--text); }
+  .who h3 a:hover { color: var(--accent); }
+  .who p { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px 20px; letter-spacing: .14em; }
+  .who b { color: var(--accent); font-weight: 400; text-transform: none; letter-spacing: .04em; }
+  blockquote { margin: 0; padding-left: 16px; border-left: 2px solid var(--accent); font-size: 18px; line-height: 1.5; color: var(--text); max-width: 640px; }
+  .nums { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); }
+  .nums div { padding: 14px 0 0; }
+  .nums dd { margin: 6px 0 0; font-size: 26px; }
+  .chart { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .bars { height: 120px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 3px; align-items: end; border-bottom: 1px solid var(--line-strong); }
+  .col { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; background: color-mix(in srgb, var(--well) 60%, transparent); }
+  .lg { background: var(--log); }
+  .ev { background: var(--chronicle); }
+  .col:hover { outline: 1px solid var(--text-2); }
+  .axis { display: flex; justify-content: space-between; letter-spacing: .1em; }
+  .legend { display: flex; gap: 20px; letter-spacing: .12em; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 10px; height: 10px; display: inline-block; }
+  .k-lg { background: var(--log); }
+  .k-ev { background: var(--chronicle); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 760px) {
+    .featured { grid-template-columns: 1fr; }
+    .portrait { border-right: 0; border-bottom: 1px solid var(--line); }
+    .portrait :global(.art) { aspect-ratio: 1; }
+    .body { padding: 22px; }
+    .nums dd { font-size: 22px; }
+  }
+</style>
