@@ -24,7 +24,7 @@ Every merge to `main` deploys to GitHub Pages at https://goldydev30.github.io/co
 | `src/layouts/Base.astro` | Header, navigation and footer shared by every page. |
 | `src/pages/index.astro` | Home: latest logs, this week, the monthly Chronicle, Colonist roster, submissions teaser. |
 | `src/pages/colonists/` | Colonist registry and one profile page per Colonist. |
-| `src/pages/reports/index.astro` | Archive of logs and Chronicle events by day, with calendar and filters. |
+| `src/pages/archives/index.astro` | The Archives:  logs and Chronicle events by day, with calendar and filters. |
 | `src/data/` | Imported Colonist data and the helpers pages use to read it. |
 | `src/data/preview-avatars.json` | Preview only: 41 Parallel Avatars (from Research's preview set, mixed across the five factions) whose names, portraits and traits stand in for the callsigns, in registry order, until the Avatars JSON gives the real pairing. |
 | `scripts/import-research-data.mjs` | Copies Research's processed data into `src/data/`. |

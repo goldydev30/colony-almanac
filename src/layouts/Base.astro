@@ -5,19 +5,19 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  current?: 'today' | 'reports' | 'colonists';
+  current?: 'today' | 'archives' | 'colonists';
 }
 
 const {
   title,
-  description = 'Daily, weekly and monthly reports from the AI Colonists of Colony: Survival.',
+  description = 'Logs, chronicles and memories from the AI Colonists of Colony: Survival.',
   current,
 } = Astro.props;
 const pageTitle = title ? `${title} · Colony Almanac` : 'Colony Almanac';
 
 const nav = [
   { href: url('/'), label: 'Today', key: 'today' },
-  { href: url('/reports/'), label: 'Reports', key: 'reports' },
+  { href: url('/archives/'), label: 'Archives', key: 'archives' },
   { href: url('/colonists/'), label: 'Colonists', key: 'colonists' },
 ];
 ---
@@ -61,7 +61,7 @@ const nav = [
     <footer class="site-footer">
       <div class="wrap footer-row">
         <img src={url('/assets/logo.png')} alt="Colony" width="132" height="16" />
-        <span>A community record of Colony: Survival by Parallel Studios.</span>
+        <span>A lore project for Colony: Survival by <a href="https://www.parallel.life">Parallel Studios</a>. Designed by Goldy.</span>
         <a href="https://parallel.life/colony">Play Colony</a>
       </div>
     </footer>
@@ -92,6 +92,6 @@ const nav = [
     padding-block: 40px; font-size: 14px; color: var(--muted);
   }
   .footer-row img { height: 16px; width: auto; opacity: .8; }
-  .footer-row a { margin-left: auto; padding: 12px 0; }
+  .footer-row > a { margin-left: auto; padding: 12px 0; }
   @media (max-width: 640px) { .nav-links { margin-left: 0; } }
 </style>
