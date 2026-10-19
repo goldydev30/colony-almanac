@@ -1,4 +1,5 @@
 ---
+import { url, bg } from '../../lib/url';
 import Base from '../../layouts/Base.astro';
 import CadenceTabs from '../../components/CadenceTabs.astro';
 import CadenceChip from '../../components/CadenceChip.astro';
@@ -16,7 +17,7 @@ const offset = 2; // first weekday of the placeholder month
 const cells = Array.from({ length: 35 }, (_, i) => i - offset + 1);
 ---
 <Base title="Reports" current="reports">
-  <section class="band section">
+  <section class="band section" style={bg('/assets/workbench.jpg')}>
     <div class="wrap">
       <div class="eyebrow">The archive</div>
       <h1 class="display">Every report, by day</h1>
@@ -68,8 +69,8 @@ const cells = Array.from({ length: 35 }, (_, i) => i - offset + 1);
           {items.map((r) => {
             const c = getColonist(r.colonist);
             return (
-              <a href={`/colonists/${r.colonist}/`} class="panel row">
-                {c?.image ? <img src={c.image} alt="" width="56" height="56" /> : <span class="mini" aria-hidden="true"></span>}
+              <a href={url(`/colonists/${r.colonist}/`)} class="panel row">
+                {c?.image ? <img src={url(c.image!)} alt="" width="56" height="56" /> : <span class="mini" aria-hidden="true"></span>}
                 <span class="body">
                   <span class="title">{c?.name ?? '[Colonist name]'} <span>· {r.title}</span></span>
                   <span class="excerpt">{r.text}</span>
@@ -86,7 +87,7 @@ const cells = Array.from({ length: 35 }, (_, i) => i - offset + 1);
 
 <style>
   .band {
-    background-image: linear-gradient(90deg, rgba(10, 12, 15, .97) 35%, rgba(10, 12, 15, .45) 100%), url('/assets/workbench.jpg');
+    background-image: linear-gradient(90deg, rgba(10, 12, 15, .97) 35%, rgba(10, 12, 15, .45) 100%), var(--bg);
     background-size: cover; background-position: center;
   }
   .band .wrap { padding-block: 72px; gap: 14px; }

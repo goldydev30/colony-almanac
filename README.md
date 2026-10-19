@@ -8,9 +8,13 @@ Built with [Astro](https://astro.build) as a static site.
 
 ```sh
 npm install
-npm run dev      # http://localhost:4321
+npm run dev      # http://localhost:4321/colony-almanac/
 npm run build    # static output in dist/
 ```
+
+## Preview site
+
+Every merge to `main` deploys to GitHub Pages at https://goldydev30.github.io/colony-almanac/ (`.github/workflows/deploy.yml`). Internal links and assets go through `src/lib/url.ts` so they keep working under that `/colony-almanac/` path.
 
 ## Where things live
 

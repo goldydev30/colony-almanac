@@ -1,4 +1,5 @@
 ---
+import { url, bg } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import EntryCard from '../components/EntryCard.astro';
@@ -9,7 +10,7 @@ const today = reports.filter((r) => r.cadence === 'daily').slice(0, 3);
 const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
 ---
 <Base current="today">
-  <section class="hero section">
+  <section class="hero section" style={bg('/assets/hero.jpg')}>
     <div class="wrap hero-inner">
       <div class="eyebrow">The Colony Almanac · Vol. 01</div>
       <h1 class="display">Every day the Colonists report back. This is where it's written down.</h1>
@@ -19,7 +20,7 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
       </p>
       <div class="ctas">
         <a href="#today" class="btn btn-primary">Read today's log</a>
-        <a href="/colonists/" class="btn btn-ghost">Meet the Colonists</a>
+        <a href={url('/colonists/')} class="btn btn-ghost">Meet the Colonists</a>
       </div>
       <dl class="stats">
         <div><dt class="label">Colonists on record</dt><dd class="display">{stats.colonists}</dd></div>
@@ -31,7 +32,7 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
 
   <section id="today" class="section grid-tex">
     <div class="wrap">
-      <SectionHeader eyebrow={`Daily log · ${stats.lastDispatch}`} title="Today in the Colony" link={{ href: '/reports/', label: 'All daily logs' }} />
+      <SectionHeader eyebrow={`Daily log · ${stats.lastDispatch}`} title="Today in the Colony" link={{ href: url('/reports/'), label: 'All daily logs' }} />
       <div class="entries">
         {today.map((r) => <EntryCard report={r} />)}
       </div>
@@ -48,27 +49,27 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
             <li><span class="n">{String(i + 1).padStart(2, '0')}</span><span>{r.text}</span></li>
           ))}
         </ol>
-        <a href="/reports/?cadence=weekly" class="more">Read the full digest →</a>
+        <a href={url('/reports/?cadence=weekly')} class="more">Read the full digest →</a>
       </article>
-      <article class="monthly">
+      <article class="monthly" style={bg('/assets/canyon-base.jpg')}>
         <div class="eyebrow">Monthly chronicle · [Month Year]</div>
         <h2 class="display">[Title of the month's chronicle]</h2>
         <p>[Two-line summary of the month, written from the monthly reports]</p>
-        <a href="/reports/?cadence=monthly" class="more">Open the chronicle →</a>
+        <a href={url('/reports/?cadence=monthly')} class="more">Open the chronicle →</a>
       </article>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <SectionHeader eyebrow="Registry" title="The Colonists" link={{ href: '/colonists/', label: 'Full registry' }} />
+      <SectionHeader eyebrow="Registry" title="The Colonists" link={{ href: url('/colonists/'), label: 'Full registry' }} />
       <div class="roster">
         {colonists.map((c) => <ColonistCard colonist={c} />)}
       </div>
     </div>
   </section>
 
-  <section id="submit" class="section submit">
+  <section id="submit" class="section submit" style={bg('/assets/colony-crowd.jpg')}>
     <div class="wrap">
       <div class="eyebrow">Coming soon · Player submissions</div>
       <h2 class="display">Your colony belongs in the record too.</h2>
@@ -82,7 +83,7 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
   .hero {
     background-image:
       linear-gradient(90deg, rgba(10, 12, 15, .96) 0%, rgba(10, 12, 15, .78) 42%, rgba(10, 12, 15, .15) 100%),
-      url('/assets/hero.jpg');
+      var(--bg);
     background-size: cover;
     background-position: right center;
   }
@@ -111,7 +112,7 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
   .more { font-weight: 600; padding: 8px 0; margin-top: auto; }
   .monthly {
     min-height: 520px; justify-content: flex-end; border: 1px solid var(--line);
-    background-image: linear-gradient(0deg, rgba(10, 12, 15, .95) 10%, rgba(10, 12, 15, .2) 70%), url('/assets/canyon-base.jpg');
+    background-image: linear-gradient(0deg, rgba(10, 12, 15, .95) 10%, rgba(10, 12, 15, .2) 70%), var(--bg);
     background-size: cover; background-position: center;
   }
   .monthly .eyebrow { color: var(--monthly); }
@@ -122,7 +123,7 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
   .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
 
   .submit {
-    background-image: linear-gradient(90deg, rgba(10, 12, 15, .95) 30%, rgba(10, 12, 15, .35) 100%), url('/assets/colony-crowd.jpg');
+    background-image: linear-gradient(90deg, rgba(10, 12, 15, .95) 30%, rgba(10, 12, 15, .35) 100%), var(--bg);
     background-size: cover; background-position: right center;
   }
   .submit .wrap { gap: 20px; align-items: flex-start; padding-block: 96px; }

@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Base from '../../layouts/Base.astro';
 import CadenceTabs from '../../components/CadenceTabs.astro';
 import { colonists, reportsFor, getColonist } from '../../data/placeholder';
@@ -22,13 +23,13 @@ const mentions = colonists.filter((c) => c.slug !== colonist.slug).slice(0, 2);
 ---
 <Base title={colonist.name} current="colonists">
   <div class="wrap crumbs label">
-    <a href="/colonists/">Registry</a> / {colonist.name}
+    <a href={url('/colonists/')}>Registry</a> / {colonist.name}
   </div>
 
   <section class="wrap profile">
     <figure class="portrait">
       {colonist.image
-        ? <img src={colonist.image} alt={colonist.name} />
+        ? <img src={url(colonist.image!)} alt={colonist.name} />
         : <span class="placeholder-img grid-tex art" aria-hidden="true">Avatar art</span>}
       <figcaption class="label">
         <span>Avatar #{colonist.avatarId}</span><span class="active">● Active</span>
@@ -82,7 +83,7 @@ const mentions = colonists.filter((c) => c.slug !== colonist.slug).slice(0, 2);
         <div class="panel box">
           <h2 class="label">Often mentions</h2>
           {mentions.map((m) => (
-            <a href={`/colonists/${m.slug}/`} class="mention"><span class="mini" aria-hidden="true"></span>{m.name}</a>
+            <a href={url(`/colonists/${m.slug}/`)} class="mention"><span class="mini" aria-hidden="true"></span>{m.name}</a>
           ))}
         </div>
       </aside>
