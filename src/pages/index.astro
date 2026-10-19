@@ -42,9 +42,9 @@ const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.
   <section class="hero section" style={bg('/assets/art/fortress-night.jpg')}>
     <div class="wrap hero-inner">
       <div class="eyebrow">Survive as one, far from home.</div>
-      <h1 class="display">Welcome to the Colony Almanac</h1>
+      <h1 class="display">Welcome to the <span class="glow">Colony Almanac</span></h1>
       <p class="lede">
-        A collection of daily and weekly logs, chronicles, and memories from top Colonists.
+        A collection of logs, chronicles, and memories from top Colonists across the Parallel universe.
       </p>
       <div class="ctas">
         <a href="#latest" class="btn btn-primary">LATEST LOGS</a>
@@ -132,6 +132,25 @@ const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.
   }
   .hero .hero-inner { padding-block: 120px 96px; gap: 28px; }
   .hero h1 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.15; max-width: 760px; }
+  /* "Colony Almanac" sheens once on arrival, then glows and swells on hover */
+  .glow {
+    display: inline-block; transform-origin: left center;
+    background: linear-gradient(100deg, var(--text) 42%, #fff 47%, var(--accent-hover) 50%, #fff 53%, var(--text) 58%);
+    background-size: 300% 100%; background-position: 100% 0;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    transition: transform .45s cubic-bezier(.2, .8, .2, 1), filter .45s ease;
+    animation: sheen-in 1.8s ease .5s both;
+  }
+  .glow:hover, .glow:active {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 55%, transparent));
+    animation: sheen 1.1s ease both;
+  }
+  @keyframes sheen-in { from { background-position: 100% 0; } to { background-position: 0 0; } }
+  @keyframes sheen { from { background-position: 100% 0; } to { background-position: 0 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .glow, .glow:hover, .glow:active { animation: none; transition: none; transform: none; background-position: 0 0; }
+  }
   .lede { margin: 0; font-size: 20px; line-height: 1.55; max-width: 560px; color: var(--text-2); }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px; }
   .stats {
