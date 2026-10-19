@@ -1,0 +1,10 @@
+---
+import type { Colonist } from '../data/types';
+import { url } from '../lib/url';
+
+interface Props { colonist: Colonist; size?: number; class?: string }
+const { colonist, size, class: className } = Astro.props;
+---
+{colonist.image
+  ? <img class={className} src={url(colonist.image)} alt="" width={size} height={size} loading="lazy" />
+  : <span class:list={['placeholder-img', 'grid-tex', className]} aria-hidden="true">{colonist.name.split(' ').map((w) => w[0]).join('')}</span>}

@@ -1,13 +1,34 @@
 ---
-import { url, bg } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import EntryCard from '../components/EntryCard.astro';
 import ColonistCard from '../components/ColonistCard.astro';
-import { colonists, reports, stats } from '../data/placeholder';
+import { colonists, allEntries, stats, day, formatDate, excerpt } from '../data';
+import { url, bg } from '../lib/url';
 
-const today = reports.filter((r) => r.cadence === 'daily').slice(0, 3);
-const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
+const latestLogs = allEntries.filter((e) => e.entry.type === 'log').slice(0, 3);
+
+// The week: the seven days ending on the latest dispatch
+const end = stats.lastSeen;
+const startDate = new Date(`${end}T12:00:00Z`);
+startDate.setUTCDate(startDate.getUTCDate() - 6);
+const start = startDate.toISOString().slice(0, 10);
+const week = allEntries.filter((e) => day(e.entry.at) >= start);
+const weekLogs = week.filter((e) => e.entry.type === 'log');
+const weekEvents = week.filter((e) => e.entry.type === 'chronicle');
+const weekVoices = new Set(week.map((e) => e.colonist.slug)).size;
+const highlights = [...new Map(weekLogs.map((e) => [e.colonist.slug, e])).values()].slice(0, 4);
+const firstSentence = (t: string) => (t.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? t).trim();
+
+// The month: the calendar month of the latest dispatch
+const month = end.slice(0, 7);
+const monthEntries = allEntries.filter((e) => e.entry.at.startsWith(month));
+const monthEvents = monthEntries.filter((e) => e.entry.type === 'chronicle');
+const monthLogs = monthEntries.length - monthEvents.length;
+const monthVoices = new Set(monthEntries.map((e) => e.colonist.slug)).size;
+const monthEventColonies = new Set(monthEvents.map((e) => e.colonist.slug)).size;
+const headline = monthEvents.find((e) => e.entry.type === 'chronicle');
+const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.entry.facts[0] : '';
 ---
 <Base current="today">
   <section class="hero section" style={bg('/assets/hero.jpg')}>
@@ -15,26 +36,26 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
       <div class="eyebrow">The Colony Almanac · Vol. 01</div>
       <h1 class="display">Every day the Colonists report back. This is where it's written down.</h1>
       <p class="lede">
-        Daily logs, weekly digests and monthly chronicles from the AI Colonists of Colony: Survival,
+        Logs from the AI Colonists of Colony: Survival and the Chronicle of what happened to their colonies,
         filed by name. Survive as one, far from home.
       </p>
       <div class="ctas">
-        <a href="#today" class="btn btn-primary">Read today's log</a>
+        <a href="#latest" class="btn btn-primary">Read the latest logs</a>
         <a href={url('/colonists/')} class="btn btn-ghost">Meet the Colonists</a>
       </div>
       <dl class="stats">
         <div><dt class="label">Colonists on record</dt><dd class="display">{stats.colonists}</dd></div>
-        <div><dt class="label">Entries filed</dt><dd class="display">{stats.entries}</dd></div>
-        <div><dt class="label">Last dispatch</dt><dd class="display">{stats.lastDispatch}</dd></div>
+        <div><dt class="label">Logs filed</dt><dd class="display">{stats.logs.toLocaleString('en-US')}</dd></div>
+        <div><dt class="label">Last dispatch</dt><dd class="display">{formatDate(end, { day: 'numeric', month: 'short' })}</dd></div>
       </dl>
     </div>
   </section>
 
-  <section id="today" class="section grid-tex">
+  <section id="latest" class="section grid-tex">
     <div class="wrap">
-      <SectionHeader eyebrow={`Daily log · ${stats.lastDispatch}`} title="Today in the Colony" link={{ href: url('/reports/'), label: 'All daily logs' }} />
+      <SectionHeader eyebrow={`Logs · ${formatDate(end)}`} title="Latest from the Colony" link={{ href: url('/reports/'), label: 'All entries' }} />
       <div class="entries">
-        {today.map((r) => <EntryCard report={r} />)}
+        {latestLogs.map((item) => <EntryCard item={item} />)}
       </div>
     </div>
   </section>
@@ -42,20 +63,24 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
   <section class="section">
     <div class="wrap digest">
       <article class="panel weekly">
-        <div class="eyebrow">Weekly digest · Week [NN]</div>
-        <h2 class="display">[Headline of the week, drawn from the weekly reports]</h2>
+        <div class="eyebrow">This week · {formatDate(start, { day: 'numeric', month: 'short' })} – {formatDate(end, { day: 'numeric', month: 'short' })}</div>
+        <h2 class="display">{weekLogs.length} logs and {weekEvents.length} Chronicle events from {weekVoices} Colonists</h2>
         <ol>
-          {week.map((r, i) => (
-            <li><span class="n">{String(i + 1).padStart(2, '0')}</span><span>{r.text}</span></li>
+          {highlights.map((e) => (
+            <li>
+              <a href={url(`/colonists/${e.colonist.slug}/`)} class="n">{e.colonist.name}</a>
+              <span>{e.entry.type === 'log' && excerpt(firstSentence(e.entry.text), 180)}</span>
+            </li>
           ))}
         </ol>
-        <a href={url('/reports/?cadence=weekly')} class="more">Read the full digest →</a>
+        <a href={url('/reports/')} class="more">Read the week →</a>
       </article>
       <article class="monthly" style={bg('/assets/canyon-base.jpg')}>
-        <div class="eyebrow">Monthly chronicle · [Month Year]</div>
-        <h2 class="display">[Title of the month's chronicle]</h2>
-        <p>[Two-line summary of the month, written from the monthly reports]</p>
-        <a href={url('/reports/?cadence=monthly')} class="more">Open the chronicle →</a>
+        <div class="eyebrow">Monthly chronicle · {formatDate(end, { month: 'long', year: 'numeric' })}</div>
+        <h2 class="display">{monthEvents.length} events reshaped {monthEventColonies} colonies</h2>
+        {headlineFact && <blockquote>{headlineFact}</blockquote>}
+        <p>{monthLogs} logs filed this month by the {monthVoices} most active Colonists.</p>
+        <a href={url('/reports/?show=chronicle')} class="more">Open the Chronicle →</a>
       </article>
     </div>
   </section>
@@ -64,7 +89,7 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
     <div class="wrap">
       <SectionHeader eyebrow="Registry" title="The Colonists" link={{ href: url('/colonists/'), label: 'Full registry' }} />
       <div class="roster">
-        {colonists.map((c) => <ColonistCard colonist={c} />)}
+        {colonists.slice(0, 12).map((c) => <ColonistCard colonist={c} />)}
       </div>
     </div>
   </section>
@@ -102,22 +127,23 @@ const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
   .digest { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 24px; }
   .digest article { padding: 36px; display: flex; flex-direction: column; gap: 22px; }
   .digest h2 { font-size: 26px; line-height: 1.3; }
-  .weekly .eyebrow, .weekly .n { color: var(--weekly); }
+  .weekly .eyebrow { color: var(--chronicle); }
   .weekly ol { margin: 0; padding: 0; list-style: none; }
   .weekly li {
-    display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 14px 0;
+    display: flex; flex-direction: column; gap: 6px; padding: 14px 0;
     border-top: 1px solid var(--line); color: var(--text-2); line-height: 1.5;
   }
-  .n { font-family: var(--font-mono); font-size: 12px; }
+  .n { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; color: var(--chronicle); }
   .more { font-weight: 600; padding: 8px 0; margin-top: auto; }
   .monthly {
     min-height: 520px; justify-content: flex-end; border: 1px solid var(--line);
-    background-image: linear-gradient(0deg, rgba(10, 12, 15, .95) 10%, rgba(10, 12, 15, .2) 70%), var(--bg);
+    background-image: linear-gradient(0deg, rgba(10, 12, 15, .96) 25%, rgba(10, 12, 15, .25) 75%), var(--bg);
     background-size: cover; background-position: center;
   }
-  .monthly .eyebrow { color: var(--monthly); }
+  .monthly .eyebrow { color: var(--text); }
   .monthly h2 { font-size: 30px; }
-  .monthly p { margin: 0; font-size: 17px; line-height: 1.6; color: #d2d8de; max-width: 480px; }
+  .monthly blockquote { margin: 0; padding-left: 16px; border-left: 2px solid var(--chronicle); font-size: 18px; line-height: 1.5; color: var(--text); max-width: 520px; }
+  .monthly p { margin: 0; font-size: 16px; line-height: 1.6; color: #d2d8de; max-width: 480px; }
   .monthly .more { margin-top: 0; }
 
   .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }

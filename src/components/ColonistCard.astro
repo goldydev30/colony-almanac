@@ -1,24 +1,23 @@
 ---
-import { url } from '../lib/url';
 import type { Colonist } from '../data/types';
+import { url } from '../lib/url';
+import Portrait from './Portrait.astro';
 
 interface Props { colonist: Colonist }
 const { colonist } = Astro.props;
 ---
 <a href={url(`/colonists/${colonist.slug}/`)} class="panel card">
-  {colonist.image
-    ? <img src={url(colonist.image!)} alt={colonist.name} loading="lazy" />
-    : <span class="placeholder-img grid-tex art" aria-hidden="true">Avatar art</span>}
+  <Portrait colonist={colonist} class="art" />
   <span class="meta">
     <span class="name">{colonist.name}</span>
-    <span class="label">{colonist.role}</span>
+    <span class="label">{colonist.log_count} logs · {colonist.chronicle_event_count} events</span>
   </span>
 </a>
 
 <style>
   .card { display: flex; flex-direction: column; color: var(--text); overflow: hidden; }
   .card:hover { border-color: var(--accent); color: var(--text); }
-  img, .art { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 55%; }
+  .card :global(.art) { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; font-size: 22px; }
   .meta { padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
   .name { font-weight: 600; font-size: 16px; }
 </style>

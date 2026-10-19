@@ -1,6 +1,6 @@
 # Colony Almanac
 
-Almanac website for Colony: Survival. Daily, weekly and monthly reports from the game's AI Colonists, filed by name, with a profile page for each Colonist.
+Almanac website for Colony: Survival. Logs from the game's AI Colonists and the Chronicle of their colonies, with a profile page for each Colonist.
 
 Built with [Astro](https://astro.build) as a static site.
 
@@ -22,12 +22,23 @@ Every merge to `main` deploys to GitHub Pages at https://goldydev30.github.io/co
 | --- | --- |
 | `src/styles/tokens.css` | Colours, fonts and spacing for the "Field Ledger" look. Change the look here first. |
 | `src/layouts/Base.astro` | Header, navigation and footer shared by every page. |
-| `src/pages/index.astro` | Home: today's log, weekly digest, monthly chronicle, Colonist roster, submissions teaser. |
+| `src/pages/index.astro` | Home: latest logs, this week, the monthly Chronicle, Colonist roster, submissions teaser. |
 | `src/pages/colonists/` | Colonist registry and one profile page per Colonist. |
-| `src/pages/reports/index.astro` | Report archive with calendar, filters and cadence tabs. |
-| `src/data/` | Data types and placeholder content. |
+| `src/pages/reports/index.astro` | Archive of logs and Chronicle events by day, with calendar and filters. |
+| `src/data/` | Imported Colonist data and the helpers pages use to read it. |
+| `scripts/import-research-data.mjs` | Copies Research's processed data into `src/data/`. |
 | `public/assets/` | Logo, SkipJack art and stills from the story trailer. |
 
 ## Data
 
-Everything in `[brackets]` is placeholder content in `src/data/placeholder.ts`. It will be replaced by a loader for the Colonist report CSVs and the Parallel Avatars collection JSON once their formats are known. The shapes the pages expect are in `src/data/types.ts`.
+The Colonist content comes from Goldy's monthly CSVs (Colonist logs and the Colony Chronicle, 28 to 31 days each), processed by the Research thread into `research/data/` in the project's shared folder. To refresh it:
+
+```sh
+node scripts/import-research-data.mjs /mnt/project-files/research/data
+```
+
+This writes `src/data/colonists.json`, `timelines.json` and `stats.json` for the Colonists with enough material for a full profile (10+ logs and 3+ Chronicle events). Each Colonist gets a stable callsign (like "Slate Mason") for its name and URL.
+
+Player gamertags are shown. Internal colony and agent IDs must never be published: the import drops them and refuses to write if a UUID-shaped value appears. **Never commit the `*.internal.*` files or the raw CSVs.**
+
+Names, portraits, factions and traits are not in the CSVs; they will come from the Parallel Avatars collection JSON. Until then each Colonist shows under its callsign.

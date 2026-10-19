@@ -1,39 +1,38 @@
 ---
+import type { DatedEntry } from '../data/types';
+import { excerpt, formatDate } from '../data';
 import { url } from '../lib/url';
-import type { Report } from '../data/types';
-import { getColonist } from '../data/placeholder';
-import CadenceChip from './CadenceChip.astro';
+import TypeChip from './TypeChip.astro';
+import Portrait from './Portrait.astro';
 
-interface Props { report: Report }
-const { report } = Astro.props;
-const colonist = getColonist(report.colonist);
+interface Props { item: DatedEntry }
+const { colonist, entry } = Astro.props.item;
 ---
 <article class="panel entry">
-  <a href={url(`/colonists/${report.colonist}/`)} class="who">
-    {colonist?.image
-      ? <img src={url(colonist.image!)} alt="" width="52" height="52" />
-      : <span class="placeholder-img thumb" aria-hidden="true">IMG</span>}
+  <a href={url(`/colonists/${colonist.slug}/`)} class="who">
+    <Portrait colonist={colonist} size={52} class="thumb" />
     <span class="names">
-      <span class="name">{colonist?.name ?? '[Colonist name]'}</span>
-      <span class="label">{colonist?.role ?? '[Role]'}</span>
+      <span class="name">{colonist.name}</span>
+      <span class="label">{formatDate(entry.at)}</span>
     </span>
   </a>
-  <CadenceChip cadence={report.cadence} />
-  <p>{report.text}</p>
+  <TypeChip type={entry.type} />
+  {entry.type === 'log'
+    ? <p>{excerpt(entry.text, 260)}</p>
+    : <ul>{entry.facts.slice(0, 3).map((f) => <li>{f}</li>)}</ul>}
   <div class="tags label">
-    <span>{report.activity}</span>
-    <span>{report.location}</span>
+    {colonist.top_places.slice(0, 2).map((p) => <span>{p}</span>)}
   </div>
 </article>
 
 <style>
   .entry { padding: 24px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: start; }
   .who { display: flex; align-items: center; gap: 14px; color: var(--text); }
-  .who img, .thumb { width: 52px; height: 52px; object-fit: cover; border: 1px solid var(--line-strong); border-radius: var(--radius); }
-  .thumb { font-size: 10px; }
+  .who :global(.thumb) { width: 52px; height: 52px; object-fit: cover; border: 1px solid var(--line-strong); border-radius: var(--radius); font-size: 12px; }
   .names { display: flex; flex-direction: column; gap: 3px; }
   .name { font-weight: 600; font-size: 17px; }
-  p { grid-column: 1 / -1; margin: 0; font-size: 16px; line-height: 1.6; color: var(--text-2); }
-  .tags { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; letter-spacing: .08em; }
+  p, ul { grid-column: 1 / -1; margin: 0; font-size: 16px; line-height: 1.6; color: var(--text-2); }
+  ul { padding-left: 18px; }
+  .tags { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; letter-spacing: .08em; margin-top: auto; }
   .tags span { border: 1px solid var(--line-strong); padding: 4px 8px; }
 </style>

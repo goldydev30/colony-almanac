@@ -1,0 +1,48 @@
+import records from './colonists.json';
+import timelineData from './timelines.json';
+import statsData from './stats.json';
+import type { Colonist, ColonistRecord, DatedEntry, Entry } from './types';
+
+const timelines = timelineData as Record<string, Entry[]>;
+
+const firstSentence = (text: string) => {
+  const match = text.match(/^.+?[.!?](?=\s|$)/);
+  return (match ? match[0] : text).trim();
+};
+
+export const colonists: Colonist[] = (records as ColonistRecord[]).map((r) => ({
+  ...r,
+  quote: firstSentence(r.latest_log),
+}));
+
+export const stats = statsData;
+
+export const getColonist = (slug: string) => colonists.find((c) => c.slug === slug);
+
+/** A Colonist's logs and Chronicle events, newest first */
+export const timelineFor = (c: Colonist): Entry[] =>
+  [...(timelines[c.slug] ?? [])].sort((a, b) => b.at.localeCompare(a.at));
+
+/** Every entry across all Colonists, newest first */
+export const allEntries: DatedEntry[] = colonists
+  .flatMap((colonist) => (timelines[colonist.slug] ?? []).map((entry) => ({ colonist, entry })))
+  .sort((a, b) => b.entry.at.localeCompare(a.entry.at));
+
+export const day = (at: string) => at.slice(0, 10);
+
+export const formatDate = (d: string, opts: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' }) =>
+  new Date(`${d.slice(0, 10)}T12:00:00Z`).toLocaleDateString('en-GB', { timeZone: 'UTC', ...opts });
+
+export const excerpt = (text: string, max = 220) =>
+  text.length <= max ? text : `${text.slice(0, text.lastIndexOf(' ', max))}…`;
+
+/** Entries grouped by day, newest day first */
+export const byDay = (entries: DatedEntry[]) => {
+  const groups = new Map<string, DatedEntry[]>();
+  for (const e of entries) {
+    const d = day(e.entry.at);
+    if (!groups.has(d)) groups.set(d, []);
+    groups.get(d)!.push(e);
+  }
+  return [...groups.entries()];
+};
