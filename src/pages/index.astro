@@ -29,10 +29,27 @@ const monthLogs = monthEntries.length - monthEvents.length;
 const monthVoices = new Set(monthEntries.map((e) => e.colonist.slug)).size;
 const monthEventColonies = new Set(monthEvents.map((e) => e.colonist.slug)).size;
 const headline = monthEvents.find((e) => e.entry.type === 'chronicle');
+// Warm lights in the hero art (percent of the image), each glowing on its own beat
+const heroLights: [number, number, number][] = [
+  [46.2, 10.3, 46], [45.6, 16.0, 40], [46.8, 23.4, 34], [33.7, 30.2, 30], [38.5, 28.9, 26],
+  [48.3, 37.1, 30], [46.8, 41.3, 34], [42.2, 49.0, 30], [55.7, 38.2, 26], [53.9, 46.1, 24],
+  [70.1, 46.0, 40], [75.4, 35.9, 26], [67.8, 32.4, 22], [65.8, 59.6, 32], [73.7, 69.5, 28],
+  [67.2, 73.8, 24], [73.7, 80.5, 34], [80.2, 75.4, 26], [87.8, 82.2, 32], [81.2, 88.4, 30],
+  [96.6, 90.0, 36], [89.9, 97.4, 30], [58.9, 49.1, 22], [52.8, 60.4, 24],
+];
+const embers = Array.from({ length: 14 }, (_, i) => ({ x: 38 + ((i * 37) % 60), d: 9 + ((i * 7) % 8), delay: -((i * 13) % 17) }));
 const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.entry.facts[0] : '';
 ---
 <Base current="today">
-  <section class="hero section" style={bg('/assets/art/fortress-night.jpg')}>
+  <section class="hero section">
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-img" style={bg('/assets/art/fortress-night.jpg')}>
+        {heroLights.map(([x, y, size], i) => (
+          <span class="light" style={`left:${x}%;top:${y}%;--size:${size}px;--dur:${3.2 + ((i * 1.7) % 3.4)}s;--delay:${-((i * 0.9) % 4)}s`} />
+        ))}
+      </div>
+      {embers.map((e) => <span class="ember" style={`left:${e.x}%;--dur:${e.d}s;--delay:${e.delay}s`} />)}
+    </div>
     <div class="wrap hero-inner">
       <div class="eyebrow">Survive as one, far from home.</div>
       <h1 class="display"><span class="pre">Welcome to the</span> <span class="glow">Colony Almanac</span></h1>
@@ -115,12 +132,58 @@ const headlineFact = headline && headline.entry.type === 'chronicle' ? headline.
 </Base>
 
 <style>
-  .hero {
-    background-image:
-      linear-gradient(90deg, rgba(10, 12, 15, .96) 0%, rgba(10, 12, 15, .78) 42%, rgba(10, 12, 15, .15) 100%),
-      var(--bg);
-    background-size: cover;
-    background-position: right center;
+  .hero { position: relative; overflow: hidden; isolation: isolate; }
+  .hero-inner { position: relative; z-index: 2; }
+
+  /* The art: sized like background-size: cover, anchored right, so the
+     lights stay pinned to the windows they belong to */
+  .hero-art { position: absolute; inset: 0; z-index: 0; }
+  .hero-art::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(10, 12, 15, .96) 0%, rgba(10, 12, 15, .78) 42%, rgba(10, 12, 15, .12) 100%);
+  }
+  .hero-img {
+    position: absolute; right: 0; top: 50%; translate: 0 -50%;
+    aspect-ratio: 1376 / 768; min-width: 100%; min-height: 100%;
+    background: var(--bg) center / cover no-repeat;
+    filter: saturate(1.12) contrast(1.06);
+    transform-origin: 70% 55%;
+    animation: drift 38s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    from { transform: scale(1.02) translate(0, 0); }
+    to { transform: scale(1.09) translate(-1.2%, -0.8%); }
+  }
+
+  /* Each light: a soft warm bloom that breathes */
+  .light {
+    position: absolute; width: var(--size); height: var(--size); translate: -50% -50%;
+    border-radius: 50%; mix-blend-mode: screen; pointer-events: none;
+    background: radial-gradient(circle, rgba(255, 214, 150, .95) 0%, rgba(255, 150, 60, .55) 22%, rgba(245, 110, 30, .18) 48%, transparent 70%);
+    animation: glow var(--dur) ease-in-out var(--delay) infinite;
+  }
+  @keyframes glow {
+    0%, 100% { opacity: .45; transform: scale(.85); }
+    45% { opacity: 1; transform: scale(1.15); }
+    60% { opacity: .75; transform: scale(1); }
+  }
+
+  /* A few embers drifting up through the warm side of the frame */
+  .ember {
+    position: absolute; bottom: -8px; width: 3px; height: 3px; border-radius: 50%;
+    background: #ffb36b; box-shadow: 0 0 6px 2px rgba(255, 140, 50, .6);
+    opacity: 0; animation: rise var(--dur) linear var(--delay) infinite;
+  }
+  @keyframes rise {
+    0% { transform: translate(0, 0); opacity: 0; }
+    12% { opacity: .9; }
+    70% { opacity: .5; }
+    100% { transform: translate(-40px, -460px); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-img, .light { animation: none; }
+    .light { opacity: .8; }
+    .ember { display: none; }
   }
   .hero .hero-inner { padding-block: 120px 96px; gap: 28px; }
   .hero h1 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.15; max-width: 760px; }
