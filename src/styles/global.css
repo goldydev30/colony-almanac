@@ -40,8 +40,8 @@ a:hover { color: var(--accent-hover); }
 
 .grid-tex {
   background-image:
-    linear-gradient(rgba(222, 241, 65, .05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(222, 241, 65, .05) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -68,5 +68,14 @@ a:hover { color: var(--accent-hover); }
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
+
+/* Page banner over a piece of key art (set --bg with bg()) */
+.band {
+  background-image: linear-gradient(90deg, rgba(10, 12, 15, .97) 35%, rgba(10, 12, 15, .45) 100%), var(--bg);
+  background-size: cover; background-position: center;
+}
+.band .wrap { padding-block: 72px; gap: 14px; }
+.band h1 { font-size: clamp(30px, 4vw, 44px); }
+.band p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--text-2); max-width: 560px; }
 
 [hidden] { display: none !important; }

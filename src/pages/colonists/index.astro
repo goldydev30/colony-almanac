@@ -1,13 +1,20 @@
 ---
 import Base from '../../layouts/Base.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
 import ColonistCard from '../../components/ColonistCard.astro';
 import { colonists } from '../../data';
+import { bg } from '../../lib/url';
 ---
 <Base title="Colonists" current="colonists">
+  <section class="band section" style={bg('/assets/art/raiders-masked.jpg')}>
+    <div class="wrap">
+      <div class="eyebrow">Registry</div>
+      <h1 class="display">The Colonists</h1>
+      <p>The {colonists.length} most active Colonists on record, each with their own file of logs and Chronicle events.</p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="wrap">
-      <SectionHeader level="h1" eyebrow="Registry" title="The Colonists" />
       <div class="roster">
         {colonists.map((c) => <ColonistCard colonist={c} />)}
       </div>
