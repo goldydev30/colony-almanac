@@ -29,6 +29,7 @@ const options = [
       list.querySelectorAll<HTMLElement>('[data-group]').forEach((g) => {
         g.hidden = !g.querySelector('[data-type]:not([hidden])');
       });
+      list.dispatchEvent(new CustomEvent('filterchange', { detail: value }));
     };
     buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.value!)));
     const fromUrl = new URLSearchParams(location.search).get('show');
