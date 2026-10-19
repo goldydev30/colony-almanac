@@ -2,9 +2,11 @@
 import type { Colonist } from '../data/types';
 import { url } from '../lib/url';
 
-interface Props { colonist: Colonist; size?: number; class?: string }
-const { colonist, size, class: className } = Astro.props;
+interface Props { colonist: Colonist; size?: number; class?: string; large?: boolean }
+const { colonist, size, class: className, large } = Astro.props;
+// Avatar art is hotlinked from Parallel's media host; local art goes through the base path
+const src = colonist.image && (/^https?:/.test(colonist.image) ? colonist.image : url(colonist.image));
 ---
-{colonist.image
-  ? <img class={className} src={url(colonist.image)} alt="" width={size} height={size} loading="lazy" />
+{src
+  ? <img class:list={['portrait-img', className]} src={src} srcset={large && colonist.imageLarge ? `${src} 350w, ${colonist.imageLarge} 2048w` : undefined} sizes={large ? '420px' : undefined} alt={large && colonist.avatar ? `${colonist.avatar.name}, a ${colonist.avatar.faction} Avatar` : ''} width={size} height={size} loading={large ? 'eager' : 'lazy'} decoding="async" referrerpolicy="no-referrer" />
   : <span class:list={['placeholder-img', 'grid-tex', className]} aria-hidden="true">{colonist.name.split(' ').map((w) => w[0]).join('')}</span>}

@@ -25,9 +25,24 @@ export type Entry =
 
 export type EntryType = Entry['type'];
 
+export interface PreviewAvatar {
+  name: string;
+  token_id: number;
+  faction: string;
+  saying: string;
+  traits: Record<string, string>;
+  thumb_url: string;
+  image_url: string;
+}
+
 export interface Colonist extends ColonistRecord {
-  /** Portrait path under /public once Avatar art is available */
+  /** Portrait: a path under /public or a full image URL */
   image?: string;
+  /** Larger version of the portrait for the Colonist file */
+  imageLarge?: string;
+  /** The generated callsign, kept while an Avatar stands in for the name */
+  callsign: string;
+  avatar?: PreviewAvatar;
   quote: string;
 }
 
