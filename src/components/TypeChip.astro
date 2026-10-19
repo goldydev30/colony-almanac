@@ -1,0 +1,16 @@
+---
+import type { EntryType } from '../data/types';
+
+interface Props { type: EntryType }
+const { type } = Astro.props;
+---
+<span class:list={['chip', type]}>{type === 'log' ? 'Log' : 'Chronicle'}</span>
+
+<style>
+  .chip {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    padding: 4px 8px; white-space: nowrap; color: var(--on-accent);
+  }
+  .log { background: var(--log); }
+  .chronicle { background: var(--chronicle); }
+</style>

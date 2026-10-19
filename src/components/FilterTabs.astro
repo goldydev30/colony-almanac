@@ -1,0 +1,50 @@
+---
+// Shows or hides elements with [data-type] inside the target element.
+// Without JavaScript every entry stays visible.
+interface Props { target: string; label: string }
+const { target, label } = Astro.props;
+const options = [
+  { value: 'all', label: 'All' },
+  { value: 'log', label: 'Logs' },
+  { value: 'chronicle', label: 'Chronicle' },
+];
+---
+<div class="tabs" role="group" aria-label={label} data-tabs={target}>
+  {options.map((o, i) => (
+    <button type="button" data-value={o.value} aria-pressed={i === 0 ? 'true' : 'false'}>{o.label}</button>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((group) => {
+    const list = document.getElementById(group.dataset.tabs!);
+    if (!list) return;
+    const buttons = group.querySelectorAll<HTMLButtonElement>('button');
+    const apply = (value: string) => {
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.value === value)));
+      list.querySelectorAll<HTMLElement>('[data-type]').forEach((el) => {
+        el.hidden = value !== 'all' && el.dataset.type !== value;
+      });
+      // Hide day groups left with nothing visible
+      list.querySelectorAll<HTMLElement>('[data-group]').forEach((g) => {
+        g.hidden = !g.querySelector('[data-type]:not([hidden])');
+      });
+    };
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.value!)));
+    const fromUrl = new URLSearchParams(location.search).get('show');
+    const initial = [...buttons].find((b) => b.dataset.value === fromUrl) ?? buttons[0];
+    apply(initial.dataset.value!);
+  });
+</script>
+
+<style>
+  .tabs { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line-strong); }
+  button {
+    min-height: 44px; padding: 0 18px; border: 0; cursor: pointer; background: transparent;
+    color: var(--text-2); font: 600 15px var(--font-body);
+  }
+  button:hover { color: var(--text); }
+  button[aria-pressed='true'] { background: var(--text); color: var(--on-accent); }
+  button[data-value='log'][aria-pressed='true'] { background: var(--log); }
+  button[data-value='chronicle'][aria-pressed='true'] { background: var(--chronicle); }
+</style>

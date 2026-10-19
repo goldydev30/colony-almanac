@@ -1,89 +1,95 @@
 ---
-import { url, bg } from '../../lib/url';
 import Base from '../../layouts/Base.astro';
-import CadenceTabs from '../../components/CadenceTabs.astro';
-import CadenceChip from '../../components/CadenceChip.astro';
-import { colonists, reports, getColonist } from '../../data/placeholder';
+import FilterTabs from '../../components/FilterTabs.astro';
+import TypeChip from '../../components/TypeChip.astro';
+import Portrait from '../../components/Portrait.astro';
+import { colonists, allEntries, byDay, day, formatDate, excerpt, stats } from '../../data';
+import { url, bg } from '../../lib/url';
 
-// Grouped by date once real dates exist; placeholder data has one bucket per cadence.
-const groups = Object.entries(
-  reports.reduce<Record<string, typeof reports>>((acc, r) => {
-    (acc[r.date] ??= []).push(r);
-    return acc;
-  }, {}),
-);
+const DAYS_SHOWN = 14;
+const groups = byDay(allEntries).slice(0, DAYS_SHOWN);
+const shown = new Set(groups.map(([d]) => d));
+
+// Calendar for the month of the latest dispatch
+const month = stats.lastSeen.slice(0, 7);
+const [y, m] = month.split('-').map(Number);
+const daysInMonth = new Date(Date.UTC(y, m, 0)).getUTCDate();
+const offset = (new Date(Date.UTC(y, m - 1, 1)).getUTCDay() + 6) % 7; // Monday first
+const counts = new Map<string, number>();
+for (const e of allEntries) if (e.entry.at.startsWith(month)) counts.set(day(e.entry.at), (counts.get(day(e.entry.at)) ?? 0) + 1);
+const cells = Array.from({ length: Math.ceil((offset + daysInMonth) / 7) * 7 }, (_, i) => {
+  const n = i - offset + 1;
+  if (n < 1 || n > daysInMonth) return null;
+  const key = `${month}-${String(n).padStart(2, '0')}`;
+  return { n, key, count: counts.get(key) ?? 0, linked: shown.has(key) };
+});
 const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-const offset = 2; // first weekday of the placeholder month
-const cells = Array.from({ length: 35 }, (_, i) => i - offset + 1);
 ---
 <Base title="Reports" current="reports">
   <section class="band section" style={bg('/assets/workbench.jpg')}>
     <div class="wrap">
       <div class="eyebrow">The archive</div>
-      <h1 class="display">Every report, by day</h1>
-      <p>Browse the record by date, by Colonist or by what they were doing.</p>
+      <h1 class="display">Every entry, by day</h1>
+      <p>Colonist logs and Colony Chronicle events from the {colonists.length} most active Colonists, newest first.</p>
     </div>
   </section>
 
   <section class="wrap archive">
     <aside class="filters">
       <div class="panel cal">
-        <div class="cal-head">
-          <button type="button" aria-label="Previous month">‹</button>
-          <h2 class="display">[Month Year]</h2>
-          <button type="button" aria-label="Next month">›</button>
-        </div>
+        <h2 class="display">{formatDate(`${month}-01`, { month: 'long', year: 'numeric' })}</h2>
         <div class="cal-grid label" aria-hidden="true">
           {weekdays.map((d) => <span>{d}</span>)}
         </div>
         <div class="cal-grid">
-          {cells.map((n) => (n >= 1 && n <= 31
-            ? <button type="button" class="day">{n}</button>
-            : <span />))}
+          {cells.map((c) => !c
+            ? <span />
+            : c.linked
+              ? <a href={`#day-${c.key}`} class="day has" aria-label={`${formatDate(c.key)}: ${c.count} entries`}>{c.n}</a>
+              : <span class:list={['day', { dim: c.count > 0 }]}>{c.n}</span>)}
         </div>
-        <div class="legend">
-          <span><i class="daily"></i>Daily</span>
-          <span><i class="weekly"></i>Weekly</span>
-          <span><i class="monthly"></i>Monthly</span>
-        </div>
+        <p class="note">Highlighted days link to their entries. The archive shows the latest {DAYS_SHOWN} days for now.</p>
       </div>
       <label class="label field">Colonist
-        <select>
-          <option>All Colonists</option>
+        <select id="colonist-filter">
+          <option value="">All Colonists</option>
           {colonists.map((c) => <option value={c.slug}>{c.name}</option>)}
         </select>
-      </label>
-      <label class="label field">Activity
-        <select><option>All activity</option></select>
-      </label>
-      <label class="label field">Search
-        <input type="search" placeholder="Search report text" />
       </label>
     </aside>
 
     <div class="results" id="archive-list">
-      <CadenceTabs target="archive-list" includeAll />
-      {groups.map(([date, items]) => (
-        <div class="group" data-cadence={items[0].cadence}>
-          <h2 class="label">{date}</h2>
-          {items.map((r) => {
-            const c = getColonist(r.colonist);
-            return (
-              <a href={url(`/colonists/${r.colonist}/`)} class="panel row">
-                {c?.image ? <img src={url(c.image!)} alt="" width="56" height="56" /> : <span class="mini" aria-hidden="true"></span>}
-                <span class="body">
-                  <span class="title">{c?.name ?? '[Colonist name]'} <span>· {r.title}</span></span>
-                  <span class="excerpt">{r.text}</span>
-                </span>
-                <CadenceChip cadence={r.cadence} />
-              </a>
-            );
-          })}
+      <FilterTabs target="archive-list" label="Show" />
+      {groups.map(([d, items]) => (
+        <div class="group" id={`day-${d}`} data-group>
+          <h2 class="label">{formatDate(d, { weekday: 'long', day: 'numeric', month: 'long' })}</h2>
+          {items.map(({ colonist, entry }) => (
+            <a href={url(`/colonists/${colonist.slug}/`)} class="panel row" data-type={entry.type} data-colonist={colonist.slug}>
+              <Portrait colonist={colonist} size={56} class="mini" />
+              <span class="body">
+                <span class="title">{colonist.name}</span>
+                <span class="excerpt">{entry.type === 'log' ? excerpt(entry.text) : entry.facts.join(' · ')}</span>
+              </span>
+              <TypeChip type={entry.type} />
+            </a>
+          ))}
         </div>
       ))}
     </div>
   </section>
 </Base>
+
+<script>
+  const select = document.getElementById('colonist-filter') as HTMLSelectElement | null;
+  select?.addEventListener('change', () => {
+    document.querySelectorAll<HTMLElement>('[data-colonist]').forEach((el) => {
+      el.classList.toggle('filtered-out', !!select.value && el.dataset.colonist !== select.value);
+    });
+    document.querySelectorAll<HTMLElement>('[data-group]').forEach((g) => {
+      g.classList.toggle('filtered-out', !g.querySelector('[data-colonist]:not(.filtered-out)'));
+    });
+  });
+</script>
 
 <style>
   .band {
@@ -97,39 +103,34 @@ const cells = Array.from({ length: 35 }, (_, i) => i - offset + 1);
   .archive { display: flex; flex-wrap: wrap; gap: 40px; padding-block: 40px 96px; }
   .filters { flex: 1 1 280px; max-width: 360px; display: flex; flex-direction: column; gap: 16px; }
   .cal { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-  .cal-head { display: flex; align-items: center; justify-content: space-between; }
-  .cal-head h2 { font-size: 16px; }
-  .cal-head button { width: 44px; height: 44px; background: transparent; border: 1px solid var(--line-strong); color: var(--text); cursor: pointer; font-size: 18px; }
+  .cal h2 { font-size: 16px; text-align: center; }
   .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; }
   .day {
-    aspect-ratio: 1; min-height: 36px; cursor: pointer; font: 12px var(--font-mono);
-    background: var(--panel-2); border: 1px solid var(--line); color: var(--text-2);
+    aspect-ratio: 1; min-height: 36px; display: flex; align-items: center; justify-content: center;
+    font: 12px var(--font-mono); background: var(--panel-2); border: 1px solid var(--line); color: var(--faint);
   }
-  .day:hover { border-color: var(--accent); }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
-  .legend span { display: flex; align-items: center; gap: 6px; }
-  .legend i { width: 10px; height: 10px; }
-  .legend .daily { background: var(--daily); }
-  .legend .weekly { background: var(--weekly); }
-  .legend .monthly { border: 1px solid var(--monthly); }
+  .day.dim { color: var(--text-2); }
+  .day.has { background: rgba(222, 241, 65, .14); border-color: rgba(222, 241, 65, .5); color: var(--text); }
+  .day.has:hover { background: var(--accent); color: var(--on-accent); }
+  .note { margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
   .field { display: flex; flex-direction: column; gap: 6px; }
-  .field select, .field input {
+  .field select {
     min-height: 44px; background: var(--panel); color: var(--text); border: 1px solid var(--line-strong);
     padding: 0 12px; font: 15px var(--font-body); letter-spacing: 0; text-transform: none;
   }
 
   .results { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
-  .group { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+  .group { width: 100%; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 24px; }
   .group h2 { margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--line-strong); font-size: 13px; letter-spacing: .2em; }
   .row { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 18px; align-items: start; padding: 18px; color: var(--text); }
   .row:hover { border-color: var(--accent); color: var(--text); }
-  .row img, .mini { width: 56px; height: 56px; object-fit: cover; background: var(--well); border: 1px solid var(--line-strong); }
+  .row :global(.mini) { width: 56px; height: 56px; object-fit: cover; border: 1px solid var(--line-strong); font-size: 12px; }
   .body { display: flex; flex-direction: column; gap: 6px; }
   .title { font-weight: 600; font-size: 17px; }
-  .title span { font-weight: 400; color: var(--muted); }
   .excerpt { font-size: 15px; line-height: 1.55; color: var(--text-2); }
+  .filtered-out { display: none; }
   @media (max-width: 640px) {
     .row { grid-template-columns: 1fr auto; }
-    .row img, .mini { display: none; }
+    .row :global(.mini) { display: none; }
   }
 </style>

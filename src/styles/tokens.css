@@ -17,10 +17,9 @@
   --accent-hover: #f2ff9a;
   --on-accent: #0a0c0f;
 
-  /* One colour per report cadence */
-  --daily: var(--accent);
-  --weekly: #f0a35e;
-  --monthly: #e9ecef;
+  /* One colour per kind of entry */
+  --log: var(--accent);
+  --chronicle: #f0a35e;
 
   --font-display: 'Michroma', sans-serif;
   --font-body: 'Barlow', sans-serif;
