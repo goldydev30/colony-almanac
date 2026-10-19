@@ -1,0 +1,17 @@
+---
+import type { Cadence } from '../data/types';
+
+interface Props { cadence: Cadence }
+const { cadence } = Astro.props;
+---
+<span class:list={['chip', cadence]}>{cadence}</span>
+
+<style>
+  .chip {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    padding: 4px 8px; white-space: nowrap; color: var(--on-accent);
+  }
+  .daily { background: var(--daily); }
+  .weekly { background: var(--weekly); }
+  .monthly { background: transparent; color: var(--monthly); border: 1px solid var(--monthly); }
+</style>

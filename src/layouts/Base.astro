@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: 'today' | 'reports' | 'colonists';
+}
+
+const {
+  title,
+  description = 'Daily, weekly and monthly reports from the AI Colonists of Colony: Survival.',
+  current,
+} = Astro.props;
+const pageTitle = title ? `${title} · Colony Almanac` : 'Colony Almanac';
+
+const nav = [
+  { href: '/', label: 'Today', key: 'today' },
+  { href: '/reports/', label: 'Reports', key: 'reports' },
+  { href: '/colonists/', label: 'Colonists', key: 'colonists' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="wrap nav" aria-label="Main">
+        <a href="/" class="brand">
+          <img src="/assets/logo.png" alt="Colony" width="181" height="22" />
+          <span class="brand-tag">Almanac</span>
+        </a>
+        <ul class="nav-links">
+          {nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={current === item.key ? 'page' : undefined}>{item.label}</a>
+            </li>
+          ))}
+          <li>
+            <a href="/#submit" class="soon">Submissions <span>Soon</span></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-row">
+        <img src="/assets/logo.png" alt="Colony" width="132" height="16" />
+        <span>A community record of Colony: Survival by Parallel Studios.</span>
+        <a href="https://parallel.life/colony">Play Colony</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header { border-bottom: 1px solid var(--line); background: rgba(10, 12, 15, .92); }
+  .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-block: 14px; }
+  .brand { display: flex; align-items: center; gap: 14px; min-height: 44px; }
+  .brand img { height: 22px; width: auto; }
+  .brand-tag {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--muted); border-left: 1px solid var(--line-strong); padding-left: 14px;
+  }
+  .nav-links { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; }
+  .nav-links a {
+    display: block; padding: 12px 14px; color: var(--text); font-weight: 500; font-size: 15px;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a[aria-current='page'] { color: var(--accent); border-bottom-color: var(--accent); }
+  .nav-links .soon { color: var(--muted); }
+  .soon span { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .site-footer { border-top: 1px solid var(--line); }
+  .footer-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px;
+    padding-block: 40px; font-size: 14px; color: var(--muted);
+  }
+  .footer-row img { height: 16px; width: auto; opacity: .8; }
+  .footer-row a { margin-left: auto; padding: 12px 0; }
+  @media (max-width: 640px) { .nav-links { margin-left: 0; } }
+</style>

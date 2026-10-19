@@ -1,0 +1,43 @@
+---
+// Filters any element with [data-cadence] inside the target list.
+// Without JavaScript every report stays visible.
+interface Props { target: string; includeAll?: boolean }
+const { target, includeAll = false } = Astro.props;
+const options = [...(includeAll ? ['all'] : []), 'daily', 'weekly', 'monthly'];
+---
+<div class="tabs" role="group" aria-label="Report cadence" data-tabs={target}>
+  {options.map((o, i) => (
+    <button type="button" data-value={o} aria-pressed={i === 0 ? 'true' : 'false'}>{o}</button>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((group) => {
+    const list = document.getElementById(group.dataset.tabs!);
+    if (!list) return;
+    const buttons = group.querySelectorAll<HTMLButtonElement>('button');
+    const apply = (value: string) => {
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.value === value)));
+      list.querySelectorAll<HTMLElement>('[data-cadence]').forEach((el) => {
+        el.hidden = value !== 'all' && el.dataset.cadence !== value;
+      });
+      list.dataset.active = value;
+    };
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.value!)));
+    const fromUrl = new URLSearchParams(location.search).get('cadence');
+    const initial = [...buttons].find((b) => b.dataset.value === fromUrl) ?? buttons[0];
+    apply(initial.dataset.value!);
+  });
+</script>
+
+<style>
+  .tabs { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line-strong); }
+  button {
+    min-height: 44px; padding: 0 18px; border: 0; cursor: pointer; background: transparent;
+    color: var(--text-2); font: 600 15px var(--font-body); text-transform: capitalize;
+  }
+  button:hover { color: var(--text); }
+  button[aria-pressed='true'] { background: var(--text); color: var(--on-accent); }
+  button[data-value='daily'][aria-pressed='true'] { background: var(--daily); }
+  button[data-value='weekly'][aria-pressed='true'] { background: var(--weekly); }
+</style>
