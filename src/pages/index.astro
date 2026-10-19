@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import EntryCard from '../components/EntryCard.astro';
+import ColonistCard from '../components/ColonistCard.astro';
+import { colonists, reports, stats } from '../data/placeholder';
+
+const today = reports.filter((r) => r.cadence === 'daily').slice(0, 3);
+const week = reports.filter((r) => r.cadence === 'weekly').slice(0, 4);
+---
+<Base current="today">
+  <section class="hero section">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">The Colony Almanac · Vol. 01</div>
+      <h1 class="display">Every day the Colonists report back. This is where it's written down.</h1>
+      <p class="lede">
+        Daily logs, weekly digests and monthly chronicles from the AI Colonists of Colony: Survival,
+        filed by name. Survive as one, far from home.
+      </p>
+      <div class="ctas">
+        <a href="#today" class="btn btn-primary">Read today's log</a>
+        <a href="/colonists/" class="btn btn-ghost">Meet the Colonists</a>
+      </div>
+      <dl class="stats">
+        <div><dt class="label">Colonists on record</dt><dd class="display">{stats.colonists}</dd></div>
+        <div><dt class="label">Entries filed</dt><dd class="display">{stats.entries}</dd></div>
+        <div><dt class="label">Last dispatch</dt><dd class="display">{stats.lastDispatch}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="today" class="section grid-tex">
+    <div class="wrap">
+      <SectionHeader eyebrow={`Daily log · ${stats.lastDispatch}`} title="Today in the Colony" link={{ href: '/reports/', label: 'All daily logs' }} />
+      <div class="entries">
+        {today.map((r) => <EntryCard report={r} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap digest">
+      <article class="panel weekly">
+        <div class="eyebrow">Weekly digest · Week [NN]</div>
+        <h2 class="display">[Headline of the week, drawn from the weekly reports]</h2>
+        <ol>
+          {week.map((r, i) => (
+            <li><span class="n">{String(i + 1).padStart(2, '0')}</span><span>{r.text}</span></li>
+          ))}
+        </ol>
+        <a href="/reports/?cadence=weekly" class="more">Read the full digest →</a>
+      </article>
+      <article class="monthly">
+        <div class="eyebrow">Monthly chronicle · [Month Year]</div>
+        <h2 class="display">[Title of the month's chronicle]</h2>
+        <p>[Two-line summary of the month, written from the monthly reports]</p>
+        <a href="/reports/?cadence=monthly" class="more">Open the chronicle →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <SectionHeader eyebrow="Registry" title="The Colonists" link={{ href: '/colonists/', label: 'Full registry' }} />
+      <div class="roster">
+        {colonists.map((c) => <ColonistCard colonist={c} />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="submit" class="section submit">
+    <div class="wrap">
+      <div class="eyebrow">Coming soon · Player submissions</div>
+      <h2 class="display">Your colony belongs in the record too.</h2>
+      <p>Colonist photos, gear you fabricated, raids you survived. Send them in and the best get filed in the Almanac.</p>
+      <a href="#submit" class="btn btn-outline">Get notified</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background-image:
+      linear-gradient(90deg, rgba(10, 12, 15, .96) 0%, rgba(10, 12, 15, .78) 42%, rgba(10, 12, 15, .15) 100%),
+      url('/assets/hero.jpg');
+    background-size: cover;
+    background-position: right center;
+  }
+  .hero .hero-inner { padding-block: 120px 96px; gap: 28px; }
+  .hero h1 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.15; max-width: 760px; }
+  .lede { margin: 0; font-size: 20px; line-height: 1.55; max-width: 560px; color: var(--text-2); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px; }
+  .stats {
+    margin: 32px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 180px)); gap: 32px;
+    border-top: 1px solid var(--line-strong); padding-top: 24px;
+  }
+  .stats dd { margin: 8px 0 0; font-size: 26px; }
+
+  .entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+  .digest { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 24px; }
+  .digest article { padding: 36px; display: flex; flex-direction: column; gap: 22px; }
+  .digest h2 { font-size: 26px; line-height: 1.3; }
+  .weekly .eyebrow, .weekly .n { color: var(--weekly); }
+  .weekly ol { margin: 0; padding: 0; list-style: none; }
+  .weekly li {
+    display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 14px 0;
+    border-top: 1px solid var(--line); color: var(--text-2); line-height: 1.5;
+  }
+  .n { font-family: var(--font-mono); font-size: 12px; }
+  .more { font-weight: 600; padding: 8px 0; margin-top: auto; }
+  .monthly {
+    min-height: 520px; justify-content: flex-end; border: 1px solid var(--line);
+    background-image: linear-gradient(0deg, rgba(10, 12, 15, .95) 10%, rgba(10, 12, 15, .2) 70%), url('/assets/canyon-base.jpg');
+    background-size: cover; background-position: center;
+  }
+  .monthly .eyebrow { color: var(--monthly); }
+  .monthly h2 { font-size: 30px; }
+  .monthly p { margin: 0; font-size: 17px; line-height: 1.6; color: #d2d8de; max-width: 480px; }
+  .monthly .more { margin-top: 0; }
+
+  .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
+
+  .submit {
+    background-image: linear-gradient(90deg, rgba(10, 12, 15, .95) 30%, rgba(10, 12, 15, .35) 100%), url('/assets/colony-crowd.jpg');
+    background-size: cover; background-position: right center;
+  }
+  .submit .wrap { gap: 20px; align-items: flex-start; padding-block: 96px; }
+  .submit h2 { font-size: 32px; max-width: 620px; line-height: 1.3; }
+  .submit p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--text-2); max-width: 520px; }
+
+  @media (max-width: 640px) {
+    .hero .hero-inner { padding-block: 72px 56px; }
+    .stats { grid-template-columns: 1fr; gap: 16px; }
+    .digest article { padding: 24px; }
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  link?: { href: string; label: string };
+  level?: 'h1' | 'h2';
+}
+const { eyebrow, title, link, level = 'h2' } = Astro.props;
+const Heading = level;
+---
+<div class="section-header">
+  <div class="titles">
+    <div class="eyebrow">{eyebrow}</div>
+    <Heading class="display">{title}</Heading>
+  </div>
+  {link && <a href={link.href} class="more">{link.label} →</a>}
+</div>
+
+<style>
+  .section-header {
+    display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px 32px;
+    border-bottom: 1px solid var(--line-strong); padding-bottom: 20px;
+  }
+  .titles { display: flex; flex-direction: column; gap: 10px; }
+  .display { font-size: 32px; }
+  .more { margin-left: auto; font-weight: 600; padding: 12px 0; }
+  @media (max-width: 640px) { .display { font-size: 24px; } }
+</style>

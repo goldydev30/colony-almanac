@@ -1,0 +1,36 @@
+/* Field Ledger design tokens. Change the look here first. */
+:root {
+  --ground: #0a0c0f;
+  --panel: #12161b;
+  --panel-2: #161b21;
+  --well: #1c2229;
+  --line: #232a31;
+  --line-strong: #323a43;
+
+  --text: #e9ecef;
+  --text-2: #c3cad1;
+  --muted: #9aa3ad;
+  --faint: #6f7882;
+
+  /* Lime sampled from the Colony logo */
+  --accent: #def141;
+  --accent-hover: #f2ff9a;
+  --on-accent: #0a0c0f;
+
+  /* One colour per report cadence */
+  --daily: var(--accent);
+  --weekly: #f0a35e;
+  --monthly: #e9ecef;
+
+  --font-display: 'Michroma', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius: 2px;
+  --max: 1280px;
+  --gutter: 32px;
+}
+
+@media (max-width: 640px) {
+  :root { --gutter: 16px; }
+}

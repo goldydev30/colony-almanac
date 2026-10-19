@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+import CadenceTabs from '../../components/CadenceTabs.astro';
+import CadenceChip from '../../components/CadenceChip.astro';
+import { colonists, reports, getColonist } from '../../data/placeholder';
+
+// Grouped by date once real dates exist; placeholder data has one bucket per cadence.
+const groups = Object.entries(
+  reports.reduce<Record<string, typeof reports>>((acc, r) => {
+    (acc[r.date] ??= []).push(r);
+    return acc;
+  }, {}),
+);
+const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const offset = 2; // first weekday of the placeholder month
+const cells = Array.from({ length: 35 }, (_, i) => i - offset + 1);
+---
+<Base title="Reports" current="reports">
+  <section class="band section">
+    <div class="wrap">
+      <div class="eyebrow">The archive</div>
+      <h1 class="display">Every report, by day</h1>
+      <p>Browse the record by date, by Colonist or by what they were doing.</p>
+    </div>
+  </section>
+
+  <section class="wrap archive">
+    <aside class="filters">
+      <div class="panel cal">
+        <div class="cal-head">
+          <button type="button" aria-label="Previous month">‹</button>
+          <h2 class="display">[Month Year]</h2>
+          <button type="button" aria-label="Next month">›</button>
+        </div>
+        <div class="cal-grid label" aria-hidden="true">
+          {weekdays.map((d) => <span>{d}</span>)}
+        </div>
+        <div class="cal-grid">
+          {cells.map((n) => (n >= 1 && n <= 31
+            ? <button type="button" class="day">{n}</button>
+            : <span />))}
+        </div>
+        <div class="legend">
+          <span><i class="daily"></i>Daily</span>
+          <span><i class="weekly"></i>Weekly</span>
+          <span><i class="monthly"></i>Monthly</span>
+        </div>
+      </div>
+      <label class="label field">Colonist
+        <select>
+          <option>All Colonists</option>
+          {colonists.map((c) => <option value={c.slug}>{c.name}</option>)}
+        </select>
+      </label>
+      <label class="label field">Activity
+        <select><option>All activity</option></select>
+      </label>
+      <label class="label field">Search
+        <input type="search" placeholder="Search report text" />
+      </label>
+    </aside>
+
+    <div class="results" id="archive-list">
+      <CadenceTabs target="archive-list" includeAll />
+      {groups.map(([date, items]) => (
+        <div class="group" data-cadence={items[0].cadence}>
+          <h2 class="label">{date}</h2>
+          {items.map((r) => {
+            const c = getColonist(r.colonist);
+            return (
+              <a href={`/colonists/${r.colonist}/`} class="panel row">
+                {c?.image ? <img src={c.image} alt="" width="56" height="56" /> : <span class="mini" aria-hidden="true"></span>}
+                <span class="body">
+                  <span class="title">{c?.name ?? '[Colonist name]'} <span>· {r.title}</span></span>
+                  <span class="excerpt">{r.text}</span>
+                </span>
+                <CadenceChip cadence={r.cadence} />
+              </a>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .band {
+    background-image: linear-gradient(90deg, rgba(10, 12, 15, .97) 35%, rgba(10, 12, 15, .45) 100%), url('/assets/workbench.jpg');
+    background-size: cover; background-position: center;
+  }
+  .band .wrap { padding-block: 72px; gap: 14px; }
+  .band h1 { font-size: clamp(30px, 4vw, 44px); }
+  .band p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--text-2); max-width: 560px; }
+
+  .archive { display: flex; flex-wrap: wrap; gap: 40px; padding-block: 40px 96px; }
+  .filters { flex: 1 1 280px; max-width: 360px; display: flex; flex-direction: column; gap: 16px; }
+  .cal { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+  .cal-head { display: flex; align-items: center; justify-content: space-between; }
+  .cal-head h2 { font-size: 16px; }
+  .cal-head button { width: 44px; height: 44px; background: transparent; border: 1px solid var(--line-strong); color: var(--text); cursor: pointer; font-size: 18px; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; }
+  .day {
+    aspect-ratio: 1; min-height: 36px; cursor: pointer; font: 12px var(--font-mono);
+    background: var(--panel-2); border: 1px solid var(--line); color: var(--text-2);
+  }
+  .day:hover { border-color: var(--accent); }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .legend i { width: 10px; height: 10px; }
+  .legend .daily { background: var(--daily); }
+  .legend .weekly { background: var(--weekly); }
+  .legend .monthly { border: 1px solid var(--monthly); }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field select, .field input {
+    min-height: 44px; background: var(--panel); color: var(--text); border: 1px solid var(--line-strong);
+    padding: 0 12px; font: 15px var(--font-body); letter-spacing: 0; text-transform: none;
+  }
+
+  .results { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+  .group { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+  .group h2 { margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--line-strong); font-size: 13px; letter-spacing: .2em; }
+  .row { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 18px; align-items: start; padding: 18px; color: var(--text); }
+  .row:hover { border-color: var(--accent); color: var(--text); }
+  .row img, .mini { width: 56px; height: 56px; object-fit: cover; background: var(--well); border: 1px solid var(--line-strong); }
+  .body { display: flex; flex-direction: column; gap: 6px; }
+  .title { font-weight: 600; font-size: 17px; }
+  .title span { font-weight: 400; color: var(--muted); }
+  .excerpt { font-size: 15px; line-height: 1.55; color: var(--text-2); }
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 1fr auto; }
+    .row img, .mini { display: none; }
+  }
+</style>

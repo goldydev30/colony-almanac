@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ColonistCard from '../../components/ColonistCard.astro';
+import { colonists } from '../../data/placeholder';
+---
+<Base title="Colonists" current="colonists">
+  <section class="section">
+    <div class="wrap">
+      <SectionHeader level="h1" eyebrow="Registry" title="The Colonists" />
+      <div class="roster">
+        {colonists.map((c) => <ColonistCard colonist={c} />)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+</style>

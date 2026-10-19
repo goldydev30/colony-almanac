@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import CadenceTabs from '../../components/CadenceTabs.astro';
+import { colonists, reportsFor, getColonist } from '../../data/placeholder';
+
+export function getStaticPaths() {
+  return colonists.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const colonist = getColonist(slug!)!;
+const log = reportsFor(colonist.slug);
+const facts = [
+  ['Role', colonist.role],
+  ['Faction', colonist.faction],
+  ['First report', '[Date]'],
+  ['Entries filed', String(log.length || '[N]')],
+  ['Current streak', '[N] days'],
+  ['Most logged', '[Activity]'],
+];
+const mentions = colonists.filter((c) => c.slug !== colonist.slug).slice(0, 2);
+---
+<Base title={colonist.name} current="colonists">
+  <div class="wrap crumbs label">
+    <a href="/colonists/">Registry</a> / {colonist.name}
+  </div>
+
+  <section class="wrap profile">
+    <figure class="portrait">
+      {colonist.image
+        ? <img src={colonist.image} alt={colonist.name} />
+        : <span class="placeholder-img grid-tex art" aria-hidden="true">Avatar art</span>}
+      <figcaption class="label">
+        <span>Avatar #{colonist.avatarId}</span><span class="active">● Active</span>
+      </figcaption>
+    </figure>
+    <div class="file">
+      <div class="eyebrow">Colonist file</div>
+      <h1 class="display">{colonist.name}</h1>
+      <p class="bio">{colonist.bio}</p>
+      <dl class="facts">
+        {facts.map(([k, v]) => <div><dt class="label">{k}</dt><dd>{v}</dd></div>)}
+      </dl>
+      <h2 class="label">Personality</h2>
+      <ul class="traits">
+        {colonist.traits.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="reports grid-tex">
+    <div class="wrap reports-inner">
+      <div class="log">
+        <div class="log-head">
+          <h2 class="display">Field reports</h2>
+          <CadenceTabs target="colonist-log" />
+        </div>
+        <ol id="colonist-log" class="timeline">
+          {log.map((r) => (
+            <li data-cadence={r.cadence} class={r.cadence}>
+              <div class="when">{r.date} · {r.cadence}</div>
+              <h3>{r.title}</h3>
+              <p>{r.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <aside class="side">
+        <div class="panel box">
+          <h2 class="label">Activity · last 30 days</h2>
+          <div class="days" aria-hidden="true">
+            {Array.from({ length: 30 }).map(() => <span />)}
+          </div>
+          <p class="note">Filled in from the daily reports once data arrives.</p>
+        </div>
+        <div class="panel box">
+          <h2 class="label">Avatar traits</h2>
+          <dl class="avatar">
+            {Object.entries(colonist.avatarTraits).map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+        <div class="panel box">
+          <h2 class="label">Often mentions</h2>
+          {mentions.map((m) => (
+            <a href={`/colonists/${m.slug}/`} class="mention"><span class="mini" aria-hidden="true"></span>{m.name}</a>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .crumbs { padding-top: 24px; letter-spacing: .14em; }
+  .crumbs a { color: var(--muted); }
+  .profile { display: flex; flex-wrap: wrap; gap: 48px; padding-block: 32px 64px; }
+  .portrait { flex: 1 1 320px; max-width: 460px; margin: 0; position: relative; border: 1px solid var(--line-strong); }
+  .portrait img, .art { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 60%; }
+  .portrait figcaption {
+    position: absolute; inset: auto 0 0 0; display: flex; justify-content: space-between;
+    padding: 12px 16px; background: rgba(10, 12, 15, .85); letter-spacing: .14em;
+  }
+  .active { color: var(--accent); }
+  .file { flex: 999 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .file h1 { font-size: clamp(36px, 5vw, 56px); letter-spacing: .02em; }
+  .bio { margin: 0 0 12px; font-size: 20px; line-height: 1.55; color: var(--text-2); max-width: 600px; }
+  .facts {
+    margin: 0 0 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    border-top: 1px solid var(--line-strong); border-left: 1px solid var(--line-strong);
+  }
+  .facts div { padding: 16px 18px; border-right: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+  .facts dd { margin: 8px 0 0; font-size: 18px; font-weight: 600; }
+  .file h2 { margin: 0; }
+  .traits { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .traits li { border: 1px solid var(--accent); color: var(--accent); font-size: 14px; padding: 6px 12px; }
+
+  .reports { border-top: 1px solid var(--line); }
+  .reports-inner { display: flex; flex-wrap: wrap; gap: 48px; padding-block: 64px 96px; }
+  .log { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+  .log-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .log-head h2 { font-size: 28px; }
+  .timeline { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line-strong); }
+  .timeline li { position: relative; padding: 0 0 32px 32px; --c: var(--daily); }
+  .timeline li.weekly { --c: var(--weekly); }
+  .timeline li.monthly { --c: var(--monthly); }
+  .timeline li::before { content: ''; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; background: var(--c); }
+  .when { font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--c); }
+  .timeline h3 { margin: 8px 0; font-size: 20px; font-weight: 600; }
+  .timeline p { margin: 0; line-height: 1.65; color: var(--text-2); max-width: 680px; }
+
+  .side { flex: 1 1 300px; display: flex; flex-direction: column; gap: 24px; }
+  .box { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .box h2 { margin: 0; letter-spacing: .24em; }
+  .days { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; }
+  .days span { aspect-ratio: 1; background: var(--well); border: 1px solid #2a323b; }
+  .note { margin: 0; font-size: 14px; color: var(--muted); }
+  .avatar { margin: 0; }
+  .avatar div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .avatar dt { color: var(--muted); }
+  .avatar dd { margin: 0; }
+  .mention { display: flex; align-items: center; gap: 12px; color: var(--text); min-height: 44px; }
+  .mini { width: 36px; height: 36px; background: var(--well); border: 1px solid var(--line-strong); }
+</style>

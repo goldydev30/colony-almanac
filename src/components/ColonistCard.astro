@@ -1,0 +1,23 @@
+---
+import type { Colonist } from '../data/types';
+
+interface Props { colonist: Colonist }
+const { colonist } = Astro.props;
+---
+<a href={`/colonists/${colonist.slug}/`} class="panel card">
+  {colonist.image
+    ? <img src={colonist.image} alt={colonist.name} loading="lazy" />
+    : <span class="placeholder-img grid-tex art" aria-hidden="true">Avatar art</span>}
+  <span class="meta">
+    <span class="name">{colonist.name}</span>
+    <span class="label">{colonist.role}</span>
+  </span>
+</a>
+
+<style>
+  .card { display: flex; flex-direction: column; color: var(--text); overflow: hidden; }
+  .card:hover { border-color: var(--accent); color: var(--text); }
+  img, .art { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 55%; }
+  .meta { padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .name { font-weight: 600; font-size: 16px; }
+</style>
