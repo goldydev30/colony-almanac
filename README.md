@@ -26,6 +26,7 @@ Every merge to `main` deploys to GitHub Pages at https://goldydev30.github.io/co
 | `src/pages/colonists/` | Colonist registry and one profile page per Colonist. |
 | `src/pages/reports/index.astro` | Archive of logs and Chronicle events by day, with calendar and filters. |
 | `src/data/` | Imported Colonist data and the helpers pages use to read it. |
+| `src/data/preview-avatars.json` | Preview only: Parallel Avatar image links, given to Colonists in registry order until the Avatars JSON maps them properly. Add a link to fill the next portrait. |
 | `scripts/import-research-data.mjs` | Copies Research's processed data into `src/data/`. |
 | `public/assets/` | Logo, SkipJack art, and full-resolution key art in `art/` (banners, the home gallery, profile backdrops). |
 

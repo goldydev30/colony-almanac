@@ -78,4 +78,7 @@ a:hover { color: var(--accent-hover); }
 .band h1 { font-size: clamp(30px, 4vw, 44px); }
 .band p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--text-2); max-width: 560px; }
 
+/* Avatar art sits on the panel colour while it loads */
+.portrait-img { display: block; background: var(--well); object-position: center top; }
+
 [hidden] { display: none !important; }

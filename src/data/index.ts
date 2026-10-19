@@ -1,6 +1,7 @@
 import records from './colonists.json';
 import timelineData from './timelines.json';
 import statsData from './stats.json';
+import previewAvatars from './preview-avatars.json';
 import type { Colonist, ColonistRecord, DatedEntry, Entry } from './types';
 
 const timelines = timelineData as Record<string, Entry[]>;
@@ -10,8 +11,11 @@ const firstSentence = (text: string) => {
   return (match ? match[0] : text).trim();
 };
 
-export const colonists: Colonist[] = (records as ColonistRecord[]).map((r) => ({
+// Preview only: Parallel Avatar art handed out in registry order until the
+// Avatars collection JSON says which Avatar belongs to which Colonist
+export const colonists: Colonist[] = (records as ColonistRecord[]).map((r, i) => ({
   ...r,
+  image: (previewAvatars as string[])[i],
   quote: firstSentence(r.latest_log),
 }));
 

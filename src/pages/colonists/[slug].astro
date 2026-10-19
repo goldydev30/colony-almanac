@@ -52,7 +52,7 @@ const groups: [string, string[]][] = [
     <figure class="portrait">
       <Portrait colonist={colonist} class="art" />
       <figcaption class="label">
-        <span>Avatar art pending</span><span class="active">● Active</span>
+        <span>{colonist.image ? 'Preview Avatar' : 'Avatar art pending'}</span><span class="active">● Active</span>
       </figcaption>
     </figure>
     <div class="file">
