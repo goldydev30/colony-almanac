@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import type { Report } from '../data/types';
 import { getColonist } from '../data/placeholder';
 import CadenceChip from './CadenceChip.astro';
@@ -8,9 +9,9 @@ const { report } = Astro.props;
 const colonist = getColonist(report.colonist);
 ---
 <article class="panel entry">
-  <a href={`/colonists/${report.colonist}/`} class="who">
+  <a href={url(`/colonists/${report.colonist}/`)} class="who">
     {colonist?.image
-      ? <img src={colonist.image} alt="" width="52" height="52" />
+      ? <img src={url(colonist.image!)} alt="" width="52" height="52" />
       : <span class="placeholder-img thumb" aria-hidden="true">IMG</span>}
     <span class="names">
       <span class="name">{colonist?.name ?? '[Colonist name]'}</span>
