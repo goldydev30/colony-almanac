@@ -27,16 +27,18 @@ const cards = colonists.map((colonist) => {
 <div class="featured-wrap" data-featured-wrap>
   {cards.map(({ colonist, perDay, logs, events, active, peak }, i) => (
     <article class="panel featured" data-featured hidden={i > 0}>
-      <a href={url(`/colonists/${colonist.slug}/`)} class="portrait" tabindex="-1" aria-hidden="true">
-        <Portrait colonist={colonist} class="art" />
-      </a>
       <div class="body">
-        <div class="who">
-          <h3 class="display"><a href={url(`/colonists/${colonist.slug}/`)}>{colonist.name}</a></h3>
-          <p class="label">
-            {colonist.avatar && <span>{colonist.avatar.faction}</span>}
-            {colonist.commander && <span>Commander <b>{colonist.commander}</b></span>}
-          </p>
+        <div class="head">
+          <a href={url(`/colonists/${colonist.slug}/`)} class="portrait" tabindex="-1" aria-hidden="true">
+            <Portrait colonist={colonist} class="art" />
+          </a>
+          <div class="who">
+            <h3 class="display"><a href={url(`/colonists/${colonist.slug}/`)}>{colonist.name}</a></h3>
+            <p class="label">
+              {colonist.avatar && <span>{colonist.avatar.faction}</span>}
+              {colonist.commander && <span>Commander <b>{colonist.commander}</b></span>}
+            </p>
+          </div>
         </div>
         <blockquote>“{colonist.quote}”</blockquote>
         <dl class="nums">
@@ -93,16 +95,18 @@ const cards = colonists.map((colonist) => {
 </script>
 
 <style>
-  .featured { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); overflow: hidden; }
-  .portrait { display: block; border-right: 1px solid var(--line); background: var(--well); }
-  .portrait :global(.art) { width: 100%; height: 100%; min-height: 100%; aspect-ratio: 4 / 5; object-fit: cover; font-size: 56px; }
-  .body { padding: 32px; display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  .featured { height: 100%; }
+  .featured-wrap { height: 100%; }
+  .body { height: 100%; padding: 28px; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+  .head { display: flex; align-items: center; gap: 20px; }
+  .portrait { flex: 0 0 112px; display: block; border: 1px solid var(--line-strong); background: var(--well); }
+  .portrait :global(.art) { width: 112px; height: 112px; object-fit: cover; font-size: 28px; }
   .who h3 { font-size: clamp(26px, 3vw, 36px); }
   .who h3 a { color: var(--text); }
   .who h3 a:hover { color: var(--accent); }
   .who p { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px 20px; letter-spacing: .14em; }
   .who b { color: var(--accent); font-weight: 400; text-transform: none; letter-spacing: .04em; }
-  blockquote { margin: 0; padding-left: 16px; border-left: 2px solid var(--accent); font-size: 18px; line-height: 1.5; color: var(--text); max-width: 640px; }
+  blockquote { margin: 0; padding-left: 16px; border-left: 2px solid var(--accent); font-size: 17px; line-height: 1.5; color: var(--text); max-width: 640px; }
   .nums { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); }
   .nums div { padding: 14px 0 0; }
   .nums dd { margin: 6px 0 0; font-size: 26px; }
@@ -118,12 +122,11 @@ const cards = colonists.map((colonist) => {
   .legend i { width: 10px; height: 10px; display: inline-block; }
   .k-lg { background: var(--log); }
   .k-ev { background: var(--chronicle); }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-  @media (max-width: 760px) {
-    .featured { grid-template-columns: 1fr; }
-    .portrait { border-right: 0; border-bottom: 1px solid var(--line); }
-    .portrait :global(.art) { aspect-ratio: 1; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
+  @media (max-width: 640px) {
     .body { padding: 22px; }
+    .portrait { flex-basis: 84px; }
+    .portrait :global(.art) { width: 84px; height: 84px; }
     .nums dd { font-size: 22px; }
   }
 </style>

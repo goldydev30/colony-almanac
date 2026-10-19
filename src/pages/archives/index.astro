@@ -6,9 +6,8 @@ import Portrait from '../../components/Portrait.astro';
 import { colonists, allEntries, byDay, day, formatDate, excerpt, stats } from '../../data';
 import { url, bg } from '../../lib/url';
 
-const DAYS_SHOWN = 14;
-const groups = byDay(allEntries).slice(0, DAYS_SHOWN);
-const shown = new Set(groups.map(([d]) => d));
+const PAGE_SIZE = 10;
+const groups = byDay(allEntries);
 
 // Calendar for the month of the latest dispatch
 const month = stats.lastSeen.slice(0, 7);
@@ -21,7 +20,7 @@ const cells = Array.from({ length: Math.ceil((offset + daysInMonth) / 7) * 7 }, 
   const n = i - offset + 1;
   if (n < 1 || n > daysInMonth) return null;
   const key = `${month}-${String(n).padStart(2, '0')}`;
-  return { n, key, count: counts.get(key) ?? 0, linked: shown.has(key) };
+  return { n, key, count: counts.get(key) ?? 0, linked: counts.has(key) };
 });
 const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 ---
@@ -45,10 +44,10 @@ const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
           {cells.map((c) => !c
             ? <span />
             : c.linked
-              ? <a href={`#day-${c.key}`} class="day has" aria-label={`${formatDate(c.key)}: ${c.count} entries`}>{c.n}</a>
+              ? <a href={`#day-${c.key}`} class="day has" data-day={c.key} aria-label={`${formatDate(c.key)}: ${c.count} entries`}>{c.n}</a>
               : <span class:list={['day', { dim: c.count > 0 }]}>{c.n}</span>)}
         </div>
-        <p class="note">Highlighted days link to their entries. The archive shows the latest {DAYS_SHOWN} days for now.</p>
+        <p class="note">Highlighted days jump to their entries.</p>
       </div>
       <label class="label field">Colonist
         <select id="colonist-filter">
@@ -75,20 +74,66 @@ const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
           ))}
         </div>
       ))}
+      <nav class="pager" aria-label="Archive pages" data-page-size={PAGE_SIZE} hidden>
+        <button type="button" class="btn btn-ghost" data-page="prev">← Newer</button>
+        <span class="label" data-page-status></span>
+        <button type="button" class="btn btn-ghost" data-page="next">Older →</button>
+      </nav>
     </div>
   </section>
 </Base>
 
 <script>
+  // Pages of 10 over whatever the tab and Colonist filter leave showing.
+  // Without JavaScript every entry stays on one long page.
+  const list = document.getElementById('archive-list')!;
+  const pager = list.querySelector<HTMLElement>('.pager')!;
+  const status = pager.querySelector<HTMLElement>('[data-page-status]')!;
+  const prev = pager.querySelector<HTMLButtonElement>('[data-page="prev"]')!;
+  const next = pager.querySelector<HTMLButtonElement>('[data-page="next"]')!;
+  const size = Number(pager.dataset.pageSize);
+  const rows = [...list.querySelectorAll<HTMLElement>('[data-colonist]')];
+  const groups = [...list.querySelectorAll<HTMLElement>('[data-group]')];
   const select = document.getElementById('colonist-filter') as HTMLSelectElement | null;
+  let page = 0;
+
+  const matching = () => rows.filter((r) => !r.hidden && !r.classList.contains('filtered-out'));
+  const render = () => {
+    const shown = matching();
+    const pages = Math.max(1, Math.ceil(shown.length / size));
+    page = Math.min(page, pages - 1);
+    const onPage = new Set(shown.slice(page * size, page * size + size));
+    rows.forEach((r) => r.classList.toggle('paged-out', !onPage.has(r)));
+    groups.forEach((g) => g.classList.toggle('paged-out', ![...g.querySelectorAll('[data-colonist]')].some((r) => onPage.has(r as HTMLElement))));
+    pager.hidden = pages < 2;
+    status.textContent = `Page ${page + 1} of ${pages}`;
+    prev.disabled = page === 0;
+    next.disabled = page >= pages - 1;
+  };
+  const go = (p: number) => {
+    page = p;
+    render();
+    list.scrollIntoView({ block: 'start' });
+  };
+
+  list.addEventListener('filterchange', () => { page = 0; render(); });
+  prev.addEventListener('click', () => go(page - 1));
+  next.addEventListener('click', () => go(page + 1));
   select?.addEventListener('change', () => {
-    document.querySelectorAll<HTMLElement>('[data-colonist]').forEach((el) => {
-      el.classList.toggle('filtered-out', !!select.value && el.dataset.colonist !== select.value);
-    });
-    document.querySelectorAll<HTMLElement>('[data-group]').forEach((g) => {
-      g.classList.toggle('filtered-out', !g.querySelector('[data-colonist]:not(.filtered-out)'));
-    });
+    rows.forEach((el) => el.classList.toggle('filtered-out', !!select.value && el.dataset.colonist !== select.value));
+    page = 0;
+    render();
   });
+  // Calendar days open the page holding that day's first entry
+  document.querySelectorAll<HTMLAnchorElement>('[data-day]').forEach((a) => a.addEventListener('click', (e) => {
+    const first = matching().findIndex((r) => r.closest('[data-group]')?.id === `day-${a.dataset.day}`);
+    if (first < 0) return;
+    e.preventDefault();
+    page = Math.floor(first / size);
+    render();
+    document.getElementById(`day-${a.dataset.day}`)?.scrollIntoView({ block: 'start' });
+  }));
+  render();
 </script>
 
 <style>
@@ -121,7 +166,12 @@ const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   .body { display: flex; flex-direction: column; gap: 6px; }
   .title { font-weight: 600; font-size: 17px; }
   .excerpt { font-size: 15px; line-height: 1.55; color: var(--text-2); }
-  .filtered-out { display: none; }
+  .filtered-out, .paged-out { display: none !important; }
+  .pager { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; }
+  .pager[hidden] { display: none; }
+  .pager .label { letter-spacing: .16em; }
+  .pager button:disabled { opacity: .35; cursor: default; border-color: var(--line-strong); }
+  .results { scroll-margin-top: 24px; }
   @media (max-width: 640px) {
     .row { grid-template-columns: 1fr auto; }
     .row :global(.mini) { display: none; }
