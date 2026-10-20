@@ -1,7 +1,7 @@
 // Shapes of the files written by scripts/import-research-data.mjs.
 
 export interface ColonistRecord {
-  /** Interim callsign until names arrive with the Parallel Avatars JSON */
+  /** Generated callsign; the Avatar's name is shown in its place */
   name: string;
   slug: string;
   /** The player's gamertag, when the logs reveal it */
@@ -17,6 +17,7 @@ export interface ColonistRecord {
   top_resources: string[];
   top_threats: string[];
   latest_log: string;
+  avatar?: Avatar;
 }
 
 export type Entry =
@@ -25,7 +26,9 @@ export type Entry =
 
 export type EntryType = Entry['type'];
 
-export interface PreviewAvatar {
+export interface Avatar {
+  /** "preview" = a stand-in until the real Colonist-to-Avatar link is known */
+  link: 'preview' | 'confirmed';
   name: string;
   token_id: number;
   faction: string;
@@ -42,7 +45,6 @@ export interface Colonist extends ColonistRecord {
   imageLarge?: string;
   /** The generated callsign, kept while an Avatar stands in for the name */
   callsign: string;
-  avatar?: PreviewAvatar;
   quote: string;
 }
 

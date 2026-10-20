@@ -1,8 +1,7 @@
 import records from './colonists.json';
 import timelineData from './timelines.json';
 import statsData from './stats.json';
-import previewAvatars from './preview-avatars.json';
-import type { Colonist, ColonistRecord, DatedEntry, Entry, PreviewAvatar } from './types';
+import type { Colonist, ColonistRecord, DatedEntry, Entry } from './types';
 
 const timelines = timelineData as Record<string, Entry[]>;
 
@@ -11,20 +10,15 @@ const firstSentence = (text: string) => {
   return (match ? match[0] : text).trim();
 };
 
-// Preview only: Parallel Avatars stand in for the callsigns, handed out in
-// registry order, until we know which Avatar belongs to which Colonist
-export const colonists: Colonist[] = (records as ColonistRecord[]).map((r, i) => {
-  const avatar = (previewAvatars as PreviewAvatar[])[i];
-  return {
-    ...r,
-    name: avatar?.name ?? r.name,
-    callsign: r.name,
-    avatar,
-    image: avatar?.thumb_url,
-    imageLarge: avatar?.image_url,
-    quote: firstSentence(r.latest_log),
-  };
-});
+// Each Colonist shows as its assigned Parallel Avatar (see the import script)
+export const colonists: Colonist[] = (records as ColonistRecord[]).map((r) => ({
+  ...r,
+  name: r.avatar?.name ?? r.name,
+  callsign: r.name,
+  image: r.avatar?.thumb_url,
+  imageLarge: r.avatar?.image_url,
+  quote: firstSentence(r.latest_log),
+}));
 
 export const stats = statsData;
 
