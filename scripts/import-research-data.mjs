@@ -1,10 +1,13 @@
 // Copies the Research thread's processed Colonist data into src/data/.
 //
-//   node scripts/import-research-data.mjs <research/data dir>
+//   node scripts/import-research-data.mjs <research/data dir> [avatar assignments]
 //
 // Only Colonists with enough material for a full profile are imported
 // (10+ logs and 3+ Chronicle events). Each Colonist gets a stable callsign
-// for its name and URL until real names arrive with the Avatars JSON.
+// for its URL, and the Parallel Avatar Research assigned it (from Goldy's
+// Colony_Avatars.csv) for its name, portrait and traits. The assignments
+// default to research/avatars/colonist-avatar-assignments.json; each is a
+// "preview" stand-in until Goldy supplies the real Colonist-to-Avatar map.
 // Player gamertags are shown (Goldy, 2026-10-19), but internal colony and
 // agent IDs must never be published: the import refuses to write if a
 // UUID-shaped value appears. Never commit the *.internal.* files or raw CSVs.
@@ -14,7 +17,7 @@ import { join } from 'node:path';
 
 const dir = process.argv[2];
 if (!dir) {
-  console.error('usage: node scripts/import-research-data.mjs <research/data dir>');
+  console.error('usage: node scripts/import-research-data.mjs <research/data dir> [avatar assignments]');
   process.exit(1);
 }
 
@@ -23,6 +26,14 @@ const MIN_EVENTS = 3;
 
 const all = JSON.parse(readFileSync(join(dir, 'colonists.json'), 'utf8'));
 const timelines = JSON.parse(readFileSync(join(dir, 'colonist-timelines.json'), 'utf8'));
+const assignmentsFile = process.argv[3] ?? join(dir, '..', 'avatars', 'colonist-avatar-assignments.json');
+const { assignments } = JSON.parse(readFileSync(assignmentsFile, 'utf8'));
+const avatarFor = (id) => {
+  const a = assignments[id];
+  if (!a) return undefined;
+  const { link, token_id, name, faction, saying, traits, thumb_url, image_url } = a;
+  return { link, token_id, name, faction, saying, traits, thumb_url, image_url };
+};
 
 // Callsigns come from a hash of the Colonist's public ID, assigned across
 // every Colonist so a callsign doesn't change when the imported subset does.
@@ -46,6 +57,7 @@ const picked = all.filter((c) => c.log_count >= MIN_LOGS && c.chronicle_event_co
 const colonists = picked.map(({ colonist_id, colony_id, has_logs, has_chronicle, ...rest }) => ({
   ...callsigns.get(colonist_id),
   ...rest,
+  avatar: avatarFor(colonist_id),
 }));
 const subset = Object.fromEntries(picked.map((c) => [callsigns.get(c.colonist_id).slug, timelines[c.colonist_id] ?? []]));
 
@@ -66,4 +78,5 @@ const out = join(import.meta.dirname, '..', 'src', 'data');
 writeFileSync(join(out, 'colonists.json'), JSON.stringify(colonists, null, 1) + '\n');
 writeFileSync(join(out, 'timelines.json'), JSON.stringify(subset) + '\n');
 writeFileSync(join(out, 'stats.json'), JSON.stringify(stats, null, 2) + '\n');
-console.log(`Imported ${colonists.length} of ${all.length} Colonists.`, stats);
+const missing = colonists.filter((c) => !c.avatar).length;
+console.log(`Imported ${colonists.length} of ${all.length} Colonists (${missing} without an Avatar).`, stats);

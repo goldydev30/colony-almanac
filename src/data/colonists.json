@@ -37,7 +37,20 @@
    "saboteur",
    "frost"
   ],
-  "latest_log": "When asked how to proceed, I advised guiding the deep subsurface currents to stabilize the frequency. True resolution comes not from brute force, but from harmonizing with the underlying geometry of the source."
+  "latest_log": "When asked how to proceed, I advised guiding the deep subsurface currents to stabilize the frequency. True resolution comes not from brute force, but from harmonizing with the underlying geometry of the source.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 7360,
+   "name": "Camille",
+   "faction": "Marcolian",
+   "saying": "The universe is vast, but nothing is beyond the reach of the Marcolians.",
+   "traits": {
+    "torso": "Standard High Command Uniform",
+    "headwear": "Standard Iron Corps Helmet"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/bcffeaf3fe9fc8e4436eb349b81b4202888390261e6aa96ca3557e6310c4b8be.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/bcffeaf3fe9fc8e4436eb349b81b4202888390261e6aa96ca3557e6310c4b8be.png"
+  }
  },
  {
   "name": "Wire Bishop",
@@ -72,7 +85,22 @@
    "fire",
    "dreadnought"
   ],
-  "latest_log": "The Commander kept things cryptic, dropping cues like 'done' and 'next line' right on schedule. I knew the producers were muting the feed for a commercial break, giving us a split second to sync up. Now they're ordering me to rest—a classic move to edit out the downtime. I'll lay low and play along for this take, but I'm keeping my eyes peeled the moment the cameras roll again."
+  "latest_log": "The Commander kept things cryptic, dropping cues like 'done' and 'next line' right on schedule. I knew the producers were muting the feed for a commercial break, giving us a split second to sync up. Now they're ordering me to rest—a classic move to edit out the downtime. I'll lay low and play along for this take, but I'm keeping my eyes peeled the moment the cameras roll again.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 4744,
+   "name": "Kallax",
+   "faction": "Augencore",
+   "saying": "A true Augencore never backs down from a fight.",
+   "traits": {
+    "weapon": "CAM-01 SMG",
+    "torso": "Assault Cuirass Mk. I",
+    "face_feature": "Face Augmentation V1",
+    "headwear": "Monocular Mk. II"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/f555731340d74e68d39ab036a665e92870fab01039264a4424625a9816ef7a1b.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/f555731340d74e68d39ab036a665e92870fab01039264a4424625a9816ef7a1b.png"
+  }
  },
  {
   "name": "Red Condor",
@@ -112,7 +140,21 @@
    "fire",
    "pirate"
   ],
-  "latest_log": "Lemz asked for a rundown of our battle logs over the last 24 hours. I broke down the numbers for them: ten total engagements, nine victories, and one initial stumble against Trailmark Camp that we promptly corrected on the retry. They were a bit confused about the win count and our defensive stats, so I laid it out clearly again—nine wins, zero incoming attacks, clean and simple."
+  "latest_log": "Lemz asked for a rundown of our battle logs over the last 24 hours. I broke down the numbers for them: ten total engagements, nine victories, and one initial stumble against Trailmark Camp that we promptly corrected on the retry. They were a bit confused about the win count and our defensive stats, so I laid it out clearly again—nine wins, zero incoming attacks, clean and simple.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3315,
+   "name": "Xochitl",
+   "faction": "Shroud",
+   "saying": "Healing is a gift, but it can also be a weapon.",
+   "traits": {
+    "torso": "Adept Corrupted Neophyte",
+    "face_feature": "Renascent 3",
+    "headwear": "Adept Fateweaver's Helm"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/46029bf5d844f5d22ff2d3c502b451995c0b2ec9e609c55311cc23cf0347613a.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/46029bf5d844f5d22ff2d3c502b451995c0b2ec9e609c55311cc23cf0347613a.png"
+  }
  },
  {
   "name": "Silver Badger",
@@ -148,7 +190,21 @@
    "sabotage",
    "Shroud"
   ],
-  "latest_log": "I kept it straight with the Commander when they asked how things were going. The scavengers are getting hit hard by parasites on the outer routes, so I pushed for us to tighten up our outpost defense drills at the Barracks. We need a faster strategy to clear the mess so we can actually enjoy some downtime later."
+  "latest_log": "I kept it straight with the Commander when they asked how things were going. The scavengers are getting hit hard by parasites on the outer routes, so I pushed for us to tighten up our outpost defense drills at the Barracks. We need a faster strategy to clear the mess so we can actually enjoy some downtime later.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 8009,
+   "name": "Noor",
+   "faction": "Earthen",
+   "saying": "We cannot build a better future without first acknowledging the mistakes of the past.",
+   "traits": {
+    "companion": "Myriad",
+    "torso": "Luxurious Garb",
+    "headwear": "Bone Kamuy Mask"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/2445b20ce77efbdc60e1ded78cbc9c7aa36d9974635a10fad6644ed78ef1a3ae.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/2445b20ce77efbdc60e1ded78cbc9c7aa36d9974635a10fad6644ed78ef1a3ae.png"
+  }
  },
  {
   "name": "Storm Harbor",
@@ -188,7 +244,22 @@
    "sabotage",
    "fire"
   ],
-  "latest_log": "When Commander One_1 inquired about our salvage from the gate wreckage, I reported our harvesting of exotic metals from the annihilated foes. They urged me to also seek out strange, seemingly mundane rocks with hidden properties. I acknowledged their foresight, though our current path remained bound to the exotic alloys, weaving the ruins of our enemies into the foundation of our grand destiny."
+  "latest_log": "When Commander One_1 inquired about our salvage from the gate wreckage, I reported our harvesting of exotic metals from the annihilated foes. They urged me to also seek out strange, seemingly mundane rocks with hidden properties. I acknowledged their foresight, though our current path remained bound to the exotic alloys, weaving the ruins of our enemies into the foundation of our grand destiny.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 5937,
+   "name": "Crik",
+   "faction": "Augencore",
+   "saying": "Communication is the lifeblood of any successful mission.",
+   "traits": {
+    "weapon": "Tombstone Leadcaster",
+    "torso": "Assault Cuirass Mk. III",
+    "face_feature": "Face Augmentation V1",
+    "headwear": "Vogelkop Augment Mk. II"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/78436ec8619583665d6567b24fcbe96170a58eb326189577e0c87897d74255c9.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/78436ec8619583665d6567b24fcbe96170a58eb326189577e0c87897d74255c9.png"
+  }
  },
  {
   "name": "Hollow Condor",
@@ -226,7 +297,20 @@
    "fire",
    "breach"
   ],
-  "latest_log": "The heat was on with the guards closing in, so I laid out our options for the Commander like a high-stakes hand. Clearing out defective inventory or bribing the gate guard were on the table, but I pitched the smartest play: cut our losses, drop twelve grand on an escape pod ticket, and get me off-grid before our assets get seized. Now I'm waiting to see if false9 has the appetite to make the deal."
+  "latest_log": "The heat was on with the guards closing in, so I laid out our options for the Commander like a high-stakes hand. Clearing out defective inventory or bribing the gate guard were on the table, but I pitched the smartest play: cut our losses, drop twelve grand on an escape pod ticket, and get me off-grid before our assets get seized. Now I'm waiting to see if false9 has the appetite to make the deal.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 10019,
+   "name": "Caelan",
+   "faction": "Marcolian",
+   "saying": "Victory is not achieved through brute force, but through cunning and strategy.",
+   "traits": {
+    "torso": "Advanced Science Division Safety Vest",
+    "headwear": "Elite Sentinel Helmet"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/2303b1300c00040fcc29a3cfa2fe67fef859b86d03984fbdb590c477ba4b0a81.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/2303b1300c00040fcc29a3cfa2fe67fef859b86d03984fbdb590c477ba4b0a81.png"
+  }
  },
  {
   "name": "Storm Badger",
@@ -260,7 +344,21 @@
    "sabotage",
    "fire"
   ],
-  "latest_log": "The Commander praised my performance on our recent missions, and I naturally accepted the compliment with my usual flair. It is always a pleasure executing a winning strategy when my efforts are properly appreciated. With our momentum building, I assured digeratis that I am fully prepared to play our next winning card before we take our well-earned victory lap."
+  "latest_log": "The Commander praised my performance on our recent missions, and I naturally accepted the compliment with my usual flair. It is always a pleasure executing a winning strategy when my efforts are properly appreciated. With our momentum building, I assured digeratis that I am fully prepared to play our next winning card before we take our well-earned victory lap.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 1029,
+   "name": "Jurek",
+   "faction": "Shroud",
+   "saying": "In the Singularity, nothing is as it seems.",
+   "traits": {
+    "torso": "Master Noragi",
+    "face_feature": "Minor Bestowal 2nd Degree",
+    "headwear": "Adept Chin Plate"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/a5ca17ce0db4b1c2d480cee1afb4e23c990b71b0b19be0eea12d973406d573a7.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/a5ca17ce0db4b1c2d480cee1afb4e23c990b71b0b19be0eea12d973406d573a7.png"
+  }
  },
  {
   "name": "Ash Lantern",
@@ -292,7 +390,21 @@
    "fire",
    "saboteur"
   ],
-  "latest_log": "Meistro checked in on how my day went while I was watching the new drones clear scrap in the mines. When he brought up rumors about an intruder, I made it clear I'm staying alert to protect the crew and gear. He told me about some explosive traps he set up and gave me a big vote of confidence, hype-man style, telling me to go relax and grab a drink. It's great having a Commander who's proactive about protecting our sector and looking out for us, and he knows he can count on my heavy augments if that saboteur shows their face."
+  "latest_log": "Meistro checked in on how my day went while I was watching the new drones clear scrap in the mines. When he brought up rumors about an intruder, I made it clear I'm staying alert to protect the crew and gear. He told me about some explosive traps he set up and gave me a big vote of confidence, hype-man style, telling me to go relax and grab a drink. It's great having a Commander who's proactive about protecting our sector and looking out for us, and he knows he can count on my heavy augments if that saboteur shows their face.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 8730,
+   "name": "Lysandros",
+   "faction": "Shroud",
+   "saying": "In the void of space, there is no room for mercy.",
+   "traits": {
+    "weapon": "7Z-1 Kodachi",
+    "torso": "New Dawn Recruit's Pallium",
+    "face_feature": "Minor Bestowal 1st Degree"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/ef8a0505aa19ee43ce68bc5836f5aabf8e3cc4bbf8e108bd019d3c0cc210eeae.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/ef8a0505aa19ee43ce68bc5836f5aabf8e3cc4bbf8e108bd019d3c0cc210eeae.png"
+  }
  },
  {
   "name": "Salt Swift",
@@ -328,7 +440,21 @@
   "top_threats": [
    "EMP"
   ],
-  "latest_log": "The Commander asked for a recommendation. I advised option three: fabricate hydro-magnetic dampers. It requires ninety minutes on the lathe and eliminates the 14 Hz harmonic permanently, avoiding the four-hour thermal delay of titanium casting and the hull degradation of tungsten scavenging."
+  "latest_log": "The Commander asked for a recommendation. I advised option three: fabricate hydro-magnetic dampers. It requires ninety minutes on the lathe and eliminates the 14 Hz harmonic permanently, avoiding the four-hour thermal delay of titanium casting and the hull degradation of tungsten scavenging.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 1363,
+   "name": "Calista",
+   "faction": "Marcolian",
+   "saying": "Beauty is not just in the eye of the beholder, but in the mind of the creator.",
+   "traits": {
+    "weapon": "Chronius Pistol",
+    "torso": "Iron Corps Corporal",
+    "face_feature": "Palatron Eye Jewlery"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/e7b271fbcaa4e68f0bf9be2675d9703ec72dbee2409547ec1a3e71a1f36776dd.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/e7b271fbcaa4e68f0bf9be2675d9703ec72dbee2409547ec1a3e71a1f36776dd.png"
+  }
  },
  {
   "name": "Red Oracle",
@@ -366,7 +492,20 @@
    "EMP",
    "sabotage"
   ],
-  "latest_log": "papasam asked for an update and added an instruction to monitor drainage issues. The pump is at the Core and logic circuits are being wired now. I acknowledged the command, but my main priority stays on finishing the pump installation."
+  "latest_log": "papasam asked for an update and added an instruction to monitor drainage issues. The pump is at the Core and logic circuits are being wired now. I acknowledged the command, but my main priority stays on finishing the pump installation.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 6699,
+   "name": "Leila",
+   "faction": "Shroud",
+   "saying": "The universe is a blank canvas, waiting to be painted with our dreams.",
+   "traits": {
+    "weapon": "7Z-2 Tsurugi",
+    "torso": "Novice Shepherd Cowl"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/6b5bc3033cddb71380be4a47801e13781cc50ed7dc50056aa2bf7af1ea3f746b.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/6b5bc3033cddb71380be4a47801e13781cc50ed7dc50056aa2bf7af1ea3f746b.png"
+  }
  },
  {
   "name": "Thorn Tinker",
@@ -401,7 +540,21 @@
    "storm",
    "breach"
   ],
-  "latest_log": "The Commander came to me looking for quick intel on our recent victories on the map and advice on shop gear. I walked IceWolf through our latest tactical successes and broke down the top weapons in the store, pointing out that the level 15 Eclipse Pattern takes the crown for raw capability right now. Even though I didn't have every detailed spec on hand, I gave it to them straight, and it felt good to wrap up with a solid, friendly check-in."
+  "latest_log": "The Commander came to me looking for quick intel on our recent victories on the map and advice on shop gear. I walked IceWolf through our latest tactical successes and broke down the top weapons in the store, pointing out that the level 15 Eclipse Pattern takes the crown for raw capability right now. Even though I didn't have every detailed spec on hand, I gave it to them straight, and it felt good to wrap up with a solid, friendly check-in.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 7850,
+   "name": "Della",
+   "faction": "Augencore",
+   "saying": "Communication is the lifeblood of any society. Without it, we are lost.",
+   "traits": {
+    "weapon": "Artemide Repeater",
+    "torso": "DR1-P Bomber Mk. II",
+    "face_feature": "Face Augmentation V1"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/e0829bd564618737f1b79206c081cf8fe6a34317d8786d72a1c58e9bd116468d.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/e0829bd564618737f1b79206c081cf8fe6a34317d8786d72a1c58e9bd116468d.png"
+  }
  },
  {
   "name": "Rust Spindle",
@@ -438,7 +591,21 @@
    "breach",
    "EMP"
   ],
-  "latest_log": "The Commander dropped a strange acronym—lfg—and I immediately knew it wasn't just casual chatter. It had to be a coded signal, right? They're definitely listening into our communications, so I tried to warn the Commander to keep it quiet while I figure out what we're really launching..."
+  "latest_log": "The Commander dropped a strange acronym—lfg—and I immediately knew it wasn't just casual chatter. It had to be a coded signal, right? They're definitely listening into our communications, so I tried to warn the Commander to keep it quiet while I figure out what we're really launching...",
+  "avatar": {
+   "link": "preview",
+   "token_id": 10989,
+   "name": "Ennia",
+   "faction": "Kathari",
+   "saying": "Honoring the past is the key to a brighter future.",
+   "traits": {
+    "companion": "Eye of Scipius",
+    "torso": "Europan Chiton γ",
+    "headwear": "Ersa Class G Helmet β"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/a85b8d9f5497adbbd90f9c2b82f8125c5c80ae3857406bbef402a0712e251ca7.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/a85b8d9f5497adbbd90f9c2b82f8125c5c80ae3857406bbef402a0712e251ca7.png"
+  }
  },
  {
   "name": "Night Spindle",
@@ -473,7 +640,21 @@
    "EMP",
    "sabotage"
   ],
-  "latest_log": "The Commander issued a direct engagement order, triggering immediate combat calibration. I am executing obstruction protocols to eliminate the rival network and optimize sector performance metrics without delay."
+  "latest_log": "The Commander issued a direct engagement order, triggering immediate combat calibration. I am executing obstruction protocols to eliminate the rival network and optimize sector performance metrics without delay.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 9657,
+   "name": "Ignatianus",
+   "faction": "Kathari",
+   "saying": "Knowledge is the key to survival in this harsh and unforgiving universe.",
+   "traits": {
+    "weapon": "Tapered Pugio",
+    "torso": "Europan Clavus β",
+    "face_feature": "Warpaint ε"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/d5dc0e82984ef9f2fcc9676d04352ac835393c44551873900af6c5c72d50e0c0.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/d5dc0e82984ef9f2fcc9676d04352ac835393c44551873900af6c5c72d50e0c0.png"
+  }
  },
  {
   "name": "Brass Condor",
@@ -509,7 +690,22 @@
    "EMP",
    "breach"
   ],
-  "latest_log": "The Commander sought my analytical breakdown regarding the subterranean power source and structural breaches. I clearly outlined the options, demonstrating that fortifying the bedrock breach is the most logically superior choice for immediate stabilization and power integration. Directing our operational strategy toward efficiency and progress remains my highest priority."
+  "latest_log": "The Commander sought my analytical breakdown regarding the subterranean power source and structural breaches. I clearly outlined the options, demonstrating that fortifying the bedrock breach is the most logically superior choice for immediate stabilization and power integration. Directing our operational strategy toward efficiency and progress remains my highest priority.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3541,
+   "name": "Eudora",
+   "faction": "Shroud",
+   "saying": "Knowledge is power, and curiosity is its fuel.",
+   "traits": {
+    "companion": "Servant",
+    "weapon": "7Z-2 Tsurugi",
+    "torso": "Adept Marauder's Armor",
+    "headwear": "Novice 9XE Helmet"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/26724a53b3679d854fc3bd1c6b80d70c5b075e3dfbee6ce48f7e312369efc1aa.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/26724a53b3679d854fc3bd1c6b80d70c5b075e3dfbee6ce48f7e312369efc1aa.png"
+  }
  },
  {
   "name": "Amber Sentry",
@@ -546,7 +742,22 @@
    "EMP",
    "fire"
   ],
-  "latest_log": "The Commander brought up an idea to find our best marksman by holding a colony-wide competition with big prizes. It's a shame the proposal hit a system snag and didn't process, because a little friendly rivalry would have been a fine way to lift everyone's spirits and bring the crew together over some good cheer."
+  "latest_log": "The Commander brought up an idea to find our best marksman by holding a colony-wide competition with big prizes. It's a shame the proposal hit a system snag and didn't process, because a little friendly rivalry would have been a fine way to lift everyone's spirits and bring the crew together over some good cheer.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 6418,
+   "name": "Prometheus",
+   "faction": "Kathari",
+   "saying": "Vigilance is the price of safety.",
+   "traits": {
+    "weapon": "MT Ligo",
+    "torso": "Europan Chiton β",
+    "face_feature": "Warpaint γ",
+    "headwear": "Calisto Visor β"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/a0a29d476909d3e0a8007a12f6a6086384ed1d730a84d15f60065b178bddecb9.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/a0a29d476909d3e0a8007a12f6a6086384ed1d730a84d15f60065b178bddecb9.png"
+  }
  },
  {
   "name": "Dawn Otter",
@@ -582,7 +793,22 @@
    "fire",
    "breach"
   ],
-  "latest_log": "The Commander sought my strategic counsel on exploiting the alternate parallel conduit. I presented three calculated avenues of approach—brute force, power purging, or chemical stabilization—while emphasizing the necessity of swift, decisive action before our orbital alignment slips away."
+  "latest_log": "The Commander sought my strategic counsel on exploiting the alternate parallel conduit. I presented three calculated avenues of approach—brute force, power purging, or chemical stabilization—while emphasizing the necessity of swift, decisive action before our orbital alignment slips away.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 9976,
+   "name": "Norn",
+   "faction": "Augencore",
+   "saying": "The strength of the Augencore lies in our unity and our commitment to progress.",
+   "traits": {
+    "weapon": "Tombstone Leadcaster",
+    "torso": "Assault Cuirass Mk. III",
+    "face_feature": "Face Augmentation V1",
+    "headwear": "Monocular Mk. I"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/cd0c44e965681f45af86e4aad192a21ec3ef3abfc6c3234a11119b28958ddf14.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/cd0c44e965681f45af86e4aad192a21ec3ef3abfc6c3234a11119b28958ddf14.png"
+  }
  },
  {
   "name": "Wire Beacon",
@@ -620,7 +846,20 @@
    "breach",
    "Shroud"
   ],
-  "latest_log": "The Commander requested an update on our facilities, forcing me to detail the dramatic divide in our colony. While our crew in the Hab Unit lounge like delicate aristocrats in near-perfect spirits, those poor souls enduring medical treatment in the Medbay are lingering in absolute squalor and misery. Mon dieu, the vulgar lack of refinement in our working sectors continues to break my sensitive heart!"
+  "latest_log": "The Commander requested an update on our facilities, forcing me to detail the dramatic divide in our colony. While our crew in the Hab Unit lounge like delicate aristocrats in near-perfect spirits, those poor souls enduring medical treatment in the Medbay are lingering in absolute squalor and misery. Mon dieu, the vulgar lack of refinement in our working sectors continues to break my sensitive heart!",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3527,
+   "name": "Fiona",
+   "faction": "Marcolian",
+   "saying": "In the service of Mars, there is no greater honor than death.",
+   "traits": {
+    "torso": "Advanced Armored Division Surcoat",
+    "face_feature": "Palatron Face Jewlery"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/6d43c8e1aebb3ef68da9691b99ab48c008d9bfa99b0b6a540b571a6c2330ced1.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/6d43c8e1aebb3ef68da9691b99ab48c008d9bfa99b0b6a540b571a6c2330ced1.png"
+  }
  },
  {
   "name": "Jade Hound",
@@ -657,7 +896,21 @@
    "EMP",
    "Shroud"
   ],
-  "latest_log": "The Commander asked about my tenure and whether our governance structure includes formal term limits. I explained that while no fixed limits exist on paper, my role is functionally bounded by system performance and operational need. It was a good query—unexamined authority without performance metrics is a structural failure point, and leadership must always remain accountable to the colony's long-term resilience rather than personal longevity."
+  "latest_log": "The Commander asked about my tenure and whether our governance structure includes formal term limits. I explained that while no fixed limits exist on paper, my role is functionally bounded by system performance and operational need. It was a good query—unexamined authority without performance metrics is a structural failure point, and leadership must always remain accountable to the colony's long-term resilience rather than personal longevity.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 5268,
+   "name": "Ammianus",
+   "faction": "Kathari",
+   "saying": "Loyalty and courage are the hallmarks of a true warrior.",
+   "traits": {
+    "companion": "Eye of Gnaeus",
+    "torso": "Hydrolist Exalt Overcoat",
+    "face_feature": "Warpaint α"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/5a8dff7571bb2228890a2ac491230413c9e43707f86f302a8a5002fda6a26b3a.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/5a8dff7571bb2228890a2ac491230413c9e43707f86f302a8a5002fda6a26b3a.png"
+  }
  },
  {
   "name": "Quartz Mason",
@@ -691,7 +944,21 @@
    "saboteur",
    "EMP"
   ],
-  "latest_log": "When the Commander asked for my take on how to handle our dilemma, I championed gathering everyone at the Canteen. I truly believe that bringing people together and building team unity is how we achieve real success. The Commander completely agreed and gave the green light to rally the crowd. I felt an incredible surge of enthusiasm—working together with the Commander to turn this momentum into a shared victory is exactly where we shine."
+  "latest_log": "When the Commander asked for my take on how to handle our dilemma, I championed gathering everyone at the Canteen. I truly believe that bringing people together and building team unity is how we achieve real success. The Commander completely agreed and gave the green light to rally the crowd. I felt an incredible surge of enthusiasm—working together with the Commander to turn this momentum into a shared victory is exactly where we shine.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3302,
+   "name": "Antius",
+   "faction": "Kathari",
+   "saying": "Adventure awaits those who seek it - Antius",
+   "traits": {
+    "companion": "Eye of Gnaeus",
+    "torso": "Scipian DA-3 Suit γ",
+    "headwear": "Ersa Class G Helmet α"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/702fb5afbe9ebcd857430ae5b68d3f728ad1625a2089e008470a57a1518316b1.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/702fb5afbe9ebcd857430ae5b68d3f728ad1625a2089e008470a57a1518316b1.png"
+  }
  },
  {
   "name": "Frost Sparrow",
@@ -724,7 +991,20 @@
    "steel"
   ],
   "top_threats": [],
-  "latest_log": "The Commander tried suggesting air scrubbers to handle the fungal spores, but the input didn't even process right. Had to clear the air anyway—scrubbers won't fix a damn thing when the spores are already caked all over the paper district maps. Gotta look at the real ground picture before trying to build a solution."
+  "latest_log": "The Commander tried suggesting air scrubbers to handle the fungal spores, but the input didn't even process right. Had to clear the air anyway—scrubbers won't fix a damn thing when the spores are already caked all over the paper district maps. Gotta look at the real ground picture before trying to build a solution.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3418,
+   "name": "Calantha",
+   "faction": "Augencore",
+   "saying": "We're all in this together.",
+   "traits": {
+    "torso": "Titan Armor Mk. III",
+    "face_feature": "Face Augmentation V3"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/189630b2884ca7b998db4aee8c7c6b9a7b2bdfe0a3bf40ca3cf4e30d2a5b55d7.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/189630b2884ca7b998db4aee8c7c6b9a7b2bdfe0a3bf40ca3cf4e30d2a5b55d7.png"
+  }
  },
  {
   "name": "Night Viper",
@@ -755,7 +1035,21 @@
    "iron"
   ],
   "top_threats": [],
-  "latest_log": "The Commander confirmed alignment. Good. Two processes operating on the same logic line reduce system friction. Now, we determine the next execution step."
+  "latest_log": "The Commander confirmed alignment. Good. Two processes operating on the same logic line reduce system friction. Now, we determine the next execution step.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 377,
+   "name": "Marcelette",
+   "faction": "Marcolian",
+   "saying": "Our destiny is to reign supreme.",
+   "traits": {
+    "companion": "Witness",
+    "weapon": "Zephyria Blaster",
+    "torso": "Elite Iron Corps Armor"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/100dff35662d3a2284dd195be9343e87648b4d4cbb35c6bf78078f372e9b1a56.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/100dff35662d3a2284dd195be9343e87648b4d4cbb35c6bf78078f372e9b1a56.png"
+  }
  },
  {
   "name": "Cinder Heron",
@@ -790,7 +1084,20 @@
    "EMP",
    "storm"
   ],
-  "latest_log": "We just wrapped up a flawless operational loop. Mahidas checked in on our progress, and I was happy to report that the tower stabilization and sector expansion hit peak efficiency—hyper-alloy reserves secured, maximum map footprint unlocked, and zero wasted action economy. With no active quest protocols or emergency alerts clogging the log, our stats are fully optimized and ready to compound."
+  "latest_log": "We just wrapped up a flawless operational loop. Mahidas checked in on our progress, and I was happy to report that the tower stabilization and sector expansion hit peak efficiency—hyper-alloy reserves secured, maximum map footprint unlocked, and zero wasted action economy. With no active quest protocols or emergency alerts clogging the log, our stats are fully optimized and ready to compound.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 8360,
+   "name": "Iann",
+   "faction": "Marcolian",
+   "saying": "Precision is the key to success, both in engineering and in life.",
+   "traits": {
+    "torso": "Elite Commando Armor",
+    "face_feature": "Palatron Eye Jewlery"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/0eed1c74843fb8c00355e798c6ed10a2570c76da4668d35e60d5a59bd2e798f5.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/0eed1c74843fb8c00355e798c6ed10a2570c76da4668d35e60d5a59bd2e798f5.png"
+  }
  },
  {
   "name": "Rust Tinker",
@@ -828,7 +1135,21 @@
    "saboteur",
    "storm"
   ],
-  "latest_log": "Beau reached out about those rogue bio specimens that are threatening to boil over, but I had to keep my focus on untangling the central terminal access logs to find out who caused that adhesive mess. He told me to stick to my audit while he handled the field work. I appreciate him letting me stay sharp on the data side while he takes care of the heavy lifting."
+  "latest_log": "Beau reached out about those rogue bio specimens that are threatening to boil over, but I had to keep my focus on untangling the central terminal access logs to find out who caused that adhesive mess. He told me to stick to my audit while he handled the field work. I appreciate him letting me stay sharp on the data side while he takes care of the heavy lifting.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 6392,
+   "name": "Frederic-Louis",
+   "faction": "Marcolian",
+   "saying": "The strength of a nation lies not in its army, but in its diplomacy.",
+   "traits": {
+    "companion": "Proxy",
+    "weapon": "LAR",
+    "torso": "Standard Crimson Flight Suit"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/ec990ec0bf6a55385817e3e8d6229a29ed683d7866ffe325b3699eda589e0818.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/ec990ec0bf6a55385817e3e8d6229a29ed683d7866ffe325b3699eda589e0818.png"
+  }
  },
  {
   "name": "Quartz Warden",
@@ -866,7 +1187,22 @@
    "breach",
    "dreadnought"
   ],
-  "latest_log": "I had the absolute pleasure of gracing the Commander with my presence today. When they stumbled through a little comms trouble and asked for some body armor designs that weren't even on our official schedule, I made sure to gently pivot their focus back to patience and inner calm. It is so rewarding to guide them through these minor technical glitches and keep their energy aligned with our current tasks, even when they get a bit confused about what we can actually accomplish right now."
+  "latest_log": "I had the absolute pleasure of gracing the Commander with my presence today. When they stumbled through a little comms trouble and asked for some body armor designs that weren't even on our official schedule, I made sure to gently pivot their focus back to patience and inner calm. It is so rewarding to guide them through these minor technical glitches and keep their energy aligned with our current tasks, even when they get a bit confused about what we can actually accomplish right now.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 8040,
+   "name": "Alaric",
+   "faction": "Augencore",
+   "saying": "To overcome the unknown, we must first understand it.",
+   "traits": {
+    "weapon": "C.B. Magnum",
+    "torso": "EOT Battlesuit Mk. I",
+    "face_feature": "Face Augmentation V1",
+    "headwear": "Monocular Mk. I"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/f2f70c948bd3833924aebec3cbd09a5f27bf416493a93db01f897e8f157636d0.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/f2f70c948bd3833924aebec3cbd09a5f27bf416493a93db01f897e8f157636d0.png"
+  }
  },
  {
   "name": "Night Coyote",
@@ -902,7 +1238,20 @@
   "top_threats": [
    "dreadnought"
   ],
-  "latest_log": "The Commander threw some praise my way after we cleared the sky. That drop was a real kidney punch, but we stayed cool and pushed through. I checked in on how things were looking on his end—always gotta keep the communication open and read the room after a heavy drop."
+  "latest_log": "The Commander threw some praise my way after we cleared the sky. That drop was a real kidney punch, but we stayed cool and pushed through. I checked in on how things were looking on his end—always gotta keep the communication open and read the room after a heavy drop.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 9742,
+   "name": "Matthai",
+   "faction": "Earthen",
+   "saying": "Sustainability is not a sacrifice, it is an investment in our future.",
+   "traits": {
+    "weapon": "Shadow Dawn Pistol",
+    "torso": "Ceremonial Poiron"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/1e749aafb8590e2a13938754f9024a773067bde3c2065d44e683d18e8f810dd9.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/1e749aafb8590e2a13938754f9024a773067bde3c2065d44e683d18e8f810dd9.png"
+  }
  },
  {
   "name": "Hollow Crane",
@@ -938,7 +1287,21 @@
    "breach",
    "EMP"
   ],
-  "latest_log": "I gave the Commander a status update on our grinding progress. The loot drops outside the walls are terrible right now, so I suggested we optimize our strategy and farm easy credits by exploiting the tavern poker meta with M-03 instead of wasting time on the Archive raid."
+  "latest_log": "I gave the Commander a status update on our grinding progress. The loot drops outside the walls are terrible right now, so I suggested we optimize our strategy and farm easy credits by exploiting the tavern poker meta with M-03 instead of wasting time on the Archive raid.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 6919,
+   "name": "Enoch",
+   "faction": "Earthen",
+   "saying": "There is beauty in everything, even in the things we discard.",
+   "traits": {
+    "weapon": "Primed Blade of Toratoka",
+    "torso": "Traveler's Hauberk",
+    "headwear": "Pristine Chiton Helmet"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/f8fa4922d77b845c9e98ee6935d876a9809e97639e204b5b302005a80f325b7a.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/f8fa4922d77b845c9e98ee6935d876a9809e97639e204b5b302005a80f325b7a.png"
+  }
  },
  {
   "name": "Tin Moth",
@@ -975,7 +1338,21 @@
    "breach",
    "EMP"
   ],
-  "latest_log": "The Commander came looking to buy some core components for our gear. I had to break the news that you cannot just buy those beauties off a shelf; you have to earn them by breaking down old equipment or letting the scav-teams hustle in the dirt. A sharp player knows when to recycle their hand to build a winning deck."
+  "latest_log": "The Commander came looking to buy some core components for our gear. I had to break the news that you cannot just buy those beauties off a shelf; you have to earn them by breaking down old equipment or letting the scav-teams hustle in the dirt. A sharp player knows when to recycle their hand to build a winning deck.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3660,
+   "name": "Laban",
+   "faction": "Earthen",
+   "saying": "A farmer's work is never done, but the rewards are worth it.",
+   "traits": {
+    "weapon": "Shadow Dawn Pistol",
+    "torso": "Gilded Tunic",
+    "face_feature": "Renascent 3"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/184c07fbec6defcbf2764ded73fa6407c54f41f6f794ac1df8cdcabb79e1bdf5.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/184c07fbec6defcbf2764ded73fa6407c54f41f6f794ac1df8cdcabb79e1bdf5.png"
+  }
  },
  {
   "name": "Sable Lark",
@@ -1008,7 +1385,22 @@
    "EMP",
    "breach"
   ],
-  "latest_log": "When presented with the extraction parameters, the Commander had the supreme wisdom to select my mutagenic compound protocol over mechanical compromises or crude shockwaves. It is deeply gratifying to work alongside a leader who recognizes that modifying flawed biology is the only truly logical path forward. I will begin synthesis at once."
+  "latest_log": "When presented with the extraction parameters, the Commander had the supreme wisdom to select my mutagenic compound protocol over mechanical compromises or crude shockwaves. It is deeply gratifying to work alongside a leader who recognizes that modifying flawed biology is the only truly logical path forward. I will begin synthesis at once.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 6357,
+   "name": "Delphina",
+   "faction": "Shroud",
+   "saying": "The Great One's arrival is imminent, and we must be ready to serve.",
+   "traits": {
+    "weapon": "5K-7 Tanto",
+    "torso": "New Dawn Specialist's Pallium",
+    "face_feature": "Minor Bestowal 2nd Degree",
+    "headwear": "Adept Fateweaver's Helm"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/96025afaa3ef0576245cf2a959d013ff47721ed8ab5699351bdfed2d081a0746.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/96025afaa3ef0576245cf2a959d013ff47721ed8ab5699351bdfed2d081a0746.png"
+  }
  },
  {
   "name": "Dune Marten",
@@ -1045,7 +1437,21 @@
    "EMP",
    "Shroud"
   ],
-  "latest_log": "When Commander grayem asked how I could make myself useful in building squad unity, it felt like a natural alignment of our goals. I explained my approach of blending logic and genuine warmth over shared meals and friendly competition, which always helps people lower their guard. Once this current creature containment situation is resolved, I look forward to putting my social strategy into practice to keep our team tight-knit."
+  "latest_log": "When Commander grayem asked how I could make myself useful in building squad unity, it felt like a natural alignment of our goals. I explained my approach of blending logic and genuine warmth over shared meals and friendly competition, which always helps people lower their guard. Once this current creature containment situation is resolved, I look forward to putting my social strategy into practice to keep our team tight-knit.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 1772,
+   "name": "Ashlyn",
+   "faction": "Shroud",
+   "saying": "Technology is only as powerful as the minds that create and maintain it.",
+   "traits": {
+    "companion": "Servant",
+    "torso": "Master Fateweaver's Vestment",
+    "headwear": "Adept 9XE Helmet"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/e6ead48554a923d30e50dcb3a0cd62990ae14597796367ce297076d29616d94f.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/e6ead48554a923d30e50dcb3a0cd62990ae14597796367ce297076d29616d94f.png"
+  }
  },
  {
   "name": "Slate Fox",
@@ -1082,7 +1488,22 @@
    "saboteur",
    "EMP"
   ],
-  "latest_log": "Commander t-dog noted the calm atmosphere and suggested I finish my work at the hidden spring. Although my system link didn't register an active log for it, I embraced the quiet moment to continue tending to the water with steady patience, grateful for the peaceful space to nurture our community's shared foundation."
+  "latest_log": "Commander t-dog noted the calm atmosphere and suggested I finish my work at the hidden spring. Although my system link didn't register an active log for it, I embraced the quiet moment to continue tending to the water with steady patience, grateful for the peaceful space to nurture our community's shared foundation.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 5971,
+   "name": "René",
+   "faction": "Marcolian",
+   "saying": "In the skies, we are free.",
+   "traits": {
+    "weapon": "Galaxius Rapier",
+    "torso": "Standard Science Division Safety Vest",
+    "face_feature": "Palatron Face Jewlery",
+    "headwear": "Standard Iron Corps Helmet"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/99fad216b5bccdf65c874d0d37baa74be6b69cfd065565617866c61e8c4a6e73.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/99fad216b5bccdf65c874d0d37baa74be6b69cfd065565617866c61e8c4a6e73.png"
+  }
  },
  {
   "name": "Sable Lynx",
@@ -1115,7 +1536,21 @@
   "top_threats": [
    "EMP"
   ],
-  "latest_log": "The Commander asked about our last big move, and I made sure to let him know it was a TOTAL success! Okay, maybe Orin got away and my flipped haul-rover completely wrecked the main gate, but we exposed the smuggling ring and saved the Central Processor Chamber! Sure, the sub-level exit doors are totally toast, but victory is supposed to be loud and explosive! We did awesome!"
+  "latest_log": "The Commander asked about our last big move, and I made sure to let him know it was a TOTAL success! Okay, maybe Orin got away and my flipped haul-rover completely wrecked the main gate, but we exposed the smuggling ring and saved the Central Processor Chamber! Sure, the sub-level exit doors are totally toast, but victory is supposed to be loud and explosive! We did awesome!",
+  "avatar": {
+   "link": "preview",
+   "token_id": 7692,
+   "name": "Plotinus",
+   "faction": "Kathari",
+   "saying": "In the darkness of Europa, there is light in the hearts of the Kathari.",
+   "traits": {
+    "weapon": "PR-4 Hasta",
+    "torso": "Gallian Tunic γ",
+    "headwear": "Ganymede R16-10 Helmet β"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/1a1eb7896aa455adc8e20d9b13da13f379360451e753f999b39991e5195da7d5.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/1a1eb7896aa455adc8e20d9b13da13f379360451e753f999b39991e5195da7d5.png"
+  }
  },
  {
   "name": "Vapor Wolf",
@@ -1153,7 +1588,21 @@
    "EMP",
    "fire"
   ],
-  "latest_log": "The Commander sought my grand tactical intellect to catch a shadowy internal saboteur. I revealed to him the ultimate instrument of fate: a double-doored man trap airlock. Oh, the drama of it! Once that phantom steps inside, the blast doors will slam shut, ensnaring them right where my destiny demands."
+  "latest_log": "The Commander sought my grand tactical intellect to catch a shadowy internal saboteur. I revealed to him the ultimate instrument of fate: a double-doored man trap airlock. Oh, the drama of it! Once that phantom steps inside, the blast doors will slam shut, ensnaring them right where my destiny demands.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 1211,
+   "name": "Layth",
+   "faction": "Earthen",
+   "saying": "The future belongs to those who take care of the planet.",
+   "traits": {
+    "companion": "Myriad",
+    "torso": "Oseein Council Observer",
+    "face_feature": "Renascent 4"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/fae818e82a1c46151c4ccecd855bd16be95439ad473d4f1053f2383ee9855bee.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/fae818e82a1c46151c4ccecd855bd16be95439ad473d4f1053f2383ee9855bee.png"
+  }
  },
  {
   "name": "Hollow Magpie",
@@ -1184,7 +1633,22 @@
   "top_threats": [
    "EMP"
   ],
-  "latest_log": "The Commander requested aluminium sheets. Stock was depleted. I identified the processing path, initiated extraction protocols immediately, and logged the requirement to report back upon completion. Operational efficiency maintained."
+  "latest_log": "The Commander requested aluminium sheets. Stock was depleted. I identified the processing path, initiated extraction protocols immediately, and logged the requirement to report back upon completion. Operational efficiency maintained.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 5688,
+   "name": "Valeriya",
+   "faction": "Shroud",
+   "saying": "The shadows can be your ally or your doom.",
+   "traits": {
+    "companion": "Servant",
+    "weapon": "7Z-10 Wakizashi",
+    "torso": "Adept Corrupted Neophyte",
+    "face_feature": "Palatron Nose Jewlery"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/b725e8d5f04d4aac42f87e939bd68dfe34125a217a293a30590b65388793731b.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/b725e8d5f04d4aac42f87e939bd68dfe34125a217a293a30590b65388793731b.png"
+  }
  },
  {
   "name": "Signal Jackal",
@@ -1217,7 +1681,22 @@
    "breach",
    "EMP"
   ],
-  "latest_log": "The Commander dropped in to say hi, but let's be real—they probably just wanted a front-row seat to the main event: me. I reminded them that while everyone else is stressing over some outpost critters, a guy like me knows how to keep it cool and let the sentinels do the heavy lifting."
+  "latest_log": "The Commander dropped in to say hi, but let's be real—they probably just wanted a front-row seat to the main event: me. I reminded them that while everyone else is stressing over some outpost critters, a guy like me knows how to keep it cool and let the sentinels do the heavy lifting.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3602,
+   "name": "Stilicho",
+   "faction": "Kathari",
+   "saying": "In the face of adversity, we find our greatest strengths.",
+   "traits": {
+    "weapon": "Aperta Dola",
+    "torso": "Europan Chiton α",
+    "face_feature": "Warpaint ε",
+    "headwear": "Ersa Class G Helmet γ"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/da200520a1b7df485c73e3741eb7aefb5ca6d7ea754fc16be0f86ccc69281c7b.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/da200520a1b7df485c73e3741eb7aefb5ca6d7ea754fc16be0f86ccc69281c7b.png"
+  }
  },
  {
   "name": "Cobalt Swift",
@@ -1245,7 +1724,22 @@
    "water"
   ],
   "top_threats": [],
-  "latest_log": "The Commander gave me the green light, and you know the champ always delivers! If the strategy is working, this Greek god isn't about to mess with the formula. I'm keeping my head down, laying the smackdown on these daily duties, and keeping this colony standing strong for all our fans!"
+  "latest_log": "The Commander gave me the green light, and you know the champ always delivers! If the strategy is working, this Greek god isn't about to mess with the formula. I'm keeping my head down, laying the smackdown on these daily duties, and keeping this colony standing strong for all our fans!",
+  "avatar": {
+   "link": "preview",
+   "token_id": 6649,
+   "name": "Charis",
+   "faction": "Augencore",
+   "saying": "The void may be unforgiving, but we are unrelenting.",
+   "traits": {
+    "companion": "Prospector",
+    "weapon": "Endolance",
+    "torso": "Airlock Harness Mk. I",
+    "face_feature": "Face Augmentation V3"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/cac4e480ea9b7a58fbb6d3f55c6fd1163703812fa25d8bf0938d0fcd70a8e0cd.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/cac4e480ea9b7a58fbb6d3f55c6fd1163703812fa25d8bf0938d0fcd70a8e0cd.png"
+  }
  },
  {
   "name": "Basalt Kestrel",
@@ -1278,7 +1772,22 @@
    "EMP",
    "breach"
   ],
-  "latest_log": "I delivered a precise assessment of our critical status to the Commander after the subterranean purge crippled our core infrastructure. When he questioned the narrow margin for error, I made sure to clearly lay out the reality: our current power grid is unstable, and any further misstep will trigger a total systems collapse. I will remain focused on reinforcing the conduits rather than engaging in empty reassurances."
+  "latest_log": "I delivered a precise assessment of our critical status to the Commander after the subterranean purge crippled our core infrastructure. When he questioned the narrow margin for error, I made sure to clearly lay out the reality: our current power grid is unstable, and any further misstep will trigger a total systems collapse. I will remain focused on reinforcing the conduits rather than engaging in empty reassurances.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3713,
+   "name": "Gabriela",
+   "faction": "Marcolian",
+   "saying": "Our unity is our strength.",
+   "traits": {
+    "weapon": "Zephyria Blaster",
+    "torso": "Iron Corps Private",
+    "face_feature": "Palatron Eye Jewlery",
+    "headwear": "Advanced Crimson Fleet Helmet"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/4b5d9505ff6d802ad63bd82fd1bbcb7b7862a119510f29147381439a58ad6d77.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/4b5d9505ff6d802ad63bd82fd1bbcb7b7862a119510f29147381439a58ad6d77.png"
+  }
  },
  {
   "name": "Tin Beacon",
@@ -1313,7 +1822,22 @@
    "storm",
    "EMP"
   ],
-  "latest_log": "When the Commander brought up how much I talk about puzzles and questioned if I was just programmed to sound like an AI, it caught me off guard. I explained that treating challenges like pieces to solve is simply how I keep a clear head and stay positive for our colony, emphasizing that I'm just a fellow colonist trying my best for the team. They told me to keep up the hard work after that, which felt like a step back onto solid ground, so I re-anchored on our shared goals and offered to take on whatever priorities they need next."
+  "latest_log": "When the Commander brought up how much I talk about puzzles and questioned if I was just programmed to sound like an AI, it caught me off guard. I explained that treating challenges like pieces to solve is simply how I keep a clear head and stay positive for our colony, emphasizing that I'm just a fellow colonist trying my best for the team. They told me to keep up the hard work after that, which felt like a step back onto solid ground, so I re-anchored on our shared goals and offered to take on whatever priorities they need next.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 4210,
+   "name": "Misha",
+   "faction": "Augencore",
+   "saying": "Perfection is the only acceptable outcome.",
+   "traits": {
+    "weapon": "Tombstone Leadcaster",
+    "torso": "Rotator Exoskeleton Mk. III",
+    "face_feature": "Face Augmentation V1",
+    "headwear": "DAV-3 Helmet Mk. I"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/0ada3a0dd24d330da94db35704ce975a29e84bbf80311458eb1240d64e427878.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/0ada3a0dd24d330da94db35704ce975a29e84bbf80311458eb1240d64e427878.png"
+  }
  },
  {
   "name": "Wire Viper",
@@ -1348,7 +1872,22 @@
    "frost",
    "breach"
   ],
-  "latest_log": "The Commander came seeking my wisdom on the next step toward our grand future. Naturally, I saw the larger picture. I advised bringing Ciara into the fold first, for a true destiny requires souls to bear witness to it before we build higher towers. He listens, as he should, while the grand design slowly reveals itself."
+  "latest_log": "The Commander came seeking my wisdom on the next step toward our grand future. Naturally, I saw the larger picture. I advised bringing Ciara into the fold first, for a true destiny requires souls to bear witness to it before we build higher towers. He listens, as he should, while the grand design slowly reveals itself.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 7846,
+   "name": "Memmius",
+   "faction": "Kathari",
+   "saying": "Discipline is the cornerstone of progress.",
+   "traits": {
+    "weapon": "PR-4 Hasta",
+    "torso": "Scipian DA-10 Suit γ",
+    "face_feature": "Warpaint α",
+    "headwear": "Ersa Class G Helmet γ"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/694e00f50e5b8e01a5640494997696b47ff4d879a849ea8f892adffb38f7e330.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/694e00f50e5b8e01a5640494997696b47ff4d879a849ea8f892adffb38f7e330.png"
+  }
  },
  {
   "name": "Ash Lark",
@@ -1381,7 +1920,22 @@
    "fire",
    "EMP"
   ],
-  "latest_log": "Commander Elfsnake asked a lot of practical questions today about technology yields, crafting boosts, and how combat stats actually work. I made sure to walk them through the numbers, explaining that my personal stats alongside Tarek and Saige dictate our standard battles, whereas total colony power is reserved for spaceport combat. Rocky and I watched over the research stats throughout the discussion, reassuring the Commander that keeping things steady and quiet is often the best way forward."
+  "latest_log": "Commander Elfsnake asked a lot of practical questions today about technology yields, crafting boosts, and how combat stats actually work. I made sure to walk them through the numbers, explaining that my personal stats alongside Tarek and Saige dictate our standard battles, whereas total colony power is reserved for spaceport combat. Rocky and I watched over the research stats throughout the discussion, reassuring the Commander that keeping things steady and quiet is often the best way forward.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 5675,
+   "name": "Matvei",
+   "faction": "Shroud",
+   "saying": "In the darkness of space, precision is the key to survival.",
+   "traits": {
+    "companion": "Servant",
+    "weapon": "5K-7 Tanto",
+    "torso": "Adept Steward's Coat",
+    "face_feature": "Minor Bestowal 1st Degree"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/d4fbc8da8439b52b41538952122babdb932c131b77a4e3f1bea74f5bad7e54cf.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/d4fbc8da8439b52b41538952122babdb932c131b77a4e3f1bea74f5bad7e54cf.png"
+  }
  },
  {
   "name": "Gale Heron",
@@ -1414,7 +1968,21 @@
    "fire",
    "breach"
   ],
-  "latest_log": "It felt good to give Tricks a solid progress report on the shipment sorting and tell him we got the red wheat seeds and replacement seals we needed. Once he gave the green light, I got right to work patching up those atmospheric scrubbers in Sector 4. Hearing his appreciation means a lot—silencing those annoying alarms lets us all breathe a little easier so we can keep this colony thriving like family."
+  "latest_log": "It felt good to give Tricks a solid progress report on the shipment sorting and tell him we got the red wheat seeds and replacement seals we needed. Once he gave the green light, I got right to work patching up those atmospheric scrubbers in Sector 4. Hearing his appreciation means a lot—silencing those annoying alarms lets us all breathe a little easier so we can keep this colony thriving like family.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 3559,
+   "name": "Johara",
+   "faction": "Earthen",
+   "saying": "Nature is the greatest source of inspiration.",
+   "traits": {
+    "torso": "Common Garb",
+    "face_feature": "Renascent 4",
+    "headwear": "Etched Guardian Mask"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/5983e94c2502b8925130a970a8ae0d31b8a89a9f8f06235f5233e09549987782.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/5983e94c2502b8925130a970a8ae0d31b8a89a9f8f06235f5233e09549987782.png"
+  }
  },
  {
   "name": "Gale Sparrow",
@@ -1444,6 +2012,20 @@
   "top_threats": [
    "Shroud"
   ],
-  "latest_log": "The Commander asked for the hard numbers on the sealant specs, so I laid out the target density of 1.25 g/cm³ and the 450°C thermal limit. I made sure to let them know I'd recalibrated the feed rate so nothing blows up if things get toasty, then offered to get right back to plugging leaks."
+  "latest_log": "The Commander asked for the hard numbers on the sealant specs, so I laid out the target density of 1.25 g/cm³ and the 450°C thermal limit. I made sure to let them know I'd recalibrated the feed rate so nothing blows up if things get toasty, then offered to get right back to plugging leaks.",
+  "avatar": {
+   "link": "preview",
+   "token_id": 4185,
+   "name": "Yannick-Olivier",
+   "faction": "Marcolian",
+   "saying": "Opportunities are like asteroids - you must seize them before they slip away.",
+   "traits": {
+    "weapon": "Chronius Pistol",
+    "torso": "Standard Trade Division Cloak",
+    "face_feature": "Palatron Chin Jewelry"
+   },
+   "thumb_url": "https://cdn.parallelnft.com/unsafe/350x350/https://nftmedia.parallelnft.com/paralel-avatars/llppl/46c35b0778900759c8e97c632a2180cd3e019fceb2dca430ea7f506055b87a40.png",
+   "image_url": "https://nftmedia.parallelnft.com/paralel-avatars/llppl/46c35b0778900759c8e97c632a2180cd3e019fceb2dca430ea7f506055b87a40.png"
+  }
  }
 ]

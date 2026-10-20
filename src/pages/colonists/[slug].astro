@@ -54,7 +54,7 @@ const groups: [string, string[]][] = [
     <figure class="portrait">
       <Portrait colonist={colonist} class="art" large />
       <figcaption class="label">
-        <span>{colonist.avatar ? `Avatar #${colonist.avatar.token_id} · Preview` : 'Avatar art pending'}</span><span class="active">● Active</span>
+        <span>{colonist.avatar ? `Avatar #${colonist.avatar.token_id}${colonist.avatar.link === 'preview' ? ' · Preview' : ''}` : 'Avatar art pending'}</span><span class="active">● Active</span>
       </figcaption>
     </figure>
     <div class="file">
@@ -109,7 +109,7 @@ const groups: [string, string[]][] = [
               <dl class="traits">
                 {Object.entries(colonist.avatar.traits).map(([k, v]) => <div><dt>{traitLabel(k)}</dt><dd>{v}</dd></div>)}
               </dl>
-              <p class="note">Preview pairing: this Avatar stands in for the Colonist filed as {colonist.callsign} until the real match is known.</p>
+              {colonist.avatar.link === 'preview' && <p class="note">Preview pairing: this Avatar stands in for the Colonist filed as {colonist.callsign} until the real match is known.</p>}
             </>
           ) : (
             <p class="note">Name, portrait, faction and traits will come from the Parallel Avatars collection.</p>

@@ -26,7 +26,6 @@ Every merge to `main` deploys to GitHub Pages at https://goldydev30.github.io/co
 | `src/pages/colonists/` | Colonist registry and one profile page per Colonist. |
 | `src/pages/archives/index.astro` | The Archives:  logs and Chronicle events by day, with calendar and filters. |
 | `src/data/` | Imported Colonist data and the helpers pages use to read it. |
-| `src/data/preview-avatars.json` | Preview only: 41 Parallel Avatars (from Research's preview set, mixed across the five factions) whose names, portraits and traits stand in for the callsigns, in registry order, until the Avatars JSON gives the real pairing. |
 | `scripts/import-research-data.mjs` | Copies Research's processed data into `src/data/`. |
 | `public/assets/` | Logo, SkipJack art, and full-resolution key art in `art/` (banners, the home gallery, profile backdrops). |
 
@@ -42,4 +41,4 @@ This writes `src/data/colonists.json`, `timelines.json` and `stats.json` for the
 
 Player gamertags are shown. Internal colony and agent IDs must never be published: the import drops them and refuses to write if a UUID-shaped value appears. **Never commit the `*.internal.*` files or the raw CSVs.**
 
-Names, portraits, factions and traits are not in the CSVs; they will come from the Parallel Avatars collection JSON. Until then each Colonist shows under its callsign.
+Names, portraits, factions and traits are not in the Colonist CSVs. They come from Goldy's Parallel Avatars dataset (Colony_Avatars.csv, all 11,001 Avatars), which Research turns into `research/avatars/colonist-avatar-assignments.json`; the import script attaches each imported Colonist's Avatar. Until Goldy supplies the real Colonist-to-Avatar map these are preview pairings, labelled "Preview" on each profile.
